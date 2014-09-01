@@ -52,7 +52,12 @@
 
 $("#btnContinuar").on("click", function(){
 	if($("#txtNonmbre").val().trim() != "" && $("#txtGrado").val().trim() != "" && $("#txtEdad").val().trim() != "")
-		$( "#contenedor").load( "escogePersonaje.html");
+	{
+		nombre = $("#txtNonmbre").val().trim();
+		grado = $("#txtGrado").val().trim();
+		edad = $("#txtEdad").val().trim();
+		$("#contenedor").load( "escogePersonaje.html");
+	}
 	else
 		alert("Completa los campos para continuar.");
 });

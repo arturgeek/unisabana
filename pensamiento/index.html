@@ -20,14 +20,14 @@
 		var personajeSeleccionado = "";
 		var nombre = "";
 		var curso = "";
-		var colegio = "";
 		var edad = "";
-		var fecha = "";
 		var puntos = 0;
 		var claveActual = "a";
+		var fechaInicioNivel;
+		var fechaFinalNivel;
 
 		$(document).ready(function(){
-			$( "#contenedor").load( "seleccionaOpcionTres.html");
+			$( "#contenedor").load( "intro.html");
 		});
 
 		function GetUser(nombreLlave, clave)
@@ -95,6 +95,11 @@
 
 		function getRandomArbitrary(min, max) {
 		    return Math.round(Math.random() * (max - min) + min);
+		}
+
+		function obtenerSegundosEnPantalla()
+		{
+			return Math.round((fechaFinalNivel - fechaInicioNivel) / 1000);
 		}
 
 		function CrearContador(contenedor, segundos, alFinalizar)

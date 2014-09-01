@@ -40,7 +40,9 @@
 
 <script type="text/javascript">
 
-$(document).ready(function(){});
+$(document).ready(function(){
+	fechaInicioNivel = $.now();
+});
 
 $("#respuestas .respuesta").on("click", function() {
 	if($(this).hasClass("correcta"))
@@ -51,7 +53,15 @@ $("#respuestas .respuesta").on("click", function() {
 
 function AvanzaPantalla()
 {
+	OtorgarPuntos();
 	$( "#contenedor").load( "resultado.html");
+}
+
+function OtorgarPuntos()
+{
+	fechaFinalNivel = $.now();
+	var segundosDeDiferencia = obtenerSegundosEnPantalla();
+	console.log(segundosDeDiferencia);
 }
 
 </script>

@@ -51,6 +51,7 @@
 var draggedItem = null;
 
 $(document).ready(function(){
+	fechaInicioNivel = $.now();
 
 	for(var i = 0 ; i < 8 ; i++)
 		AgregarPalillo();
@@ -105,7 +106,17 @@ function AgregarPalillo()
 
 function TerminaContador()
 {
+	OtorgarPuntos();
 	$( "#contenedor").load( "encuentraElNaipe.html");
+}
+
+function OtorgarPuntos()
+{
+	fechaFinalNivel = $.now();
+	switch(obtenerSegundosEnPantalla())
+	{
+		
+	}
 }
 
 </script>
