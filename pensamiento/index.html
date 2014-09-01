@@ -1,0 +1,118 @@
+<html>
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Exo' rel='stylesheet' type='text/css'>
+	<title>El juego del pensamiento</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" href="css/jquery-ui-1.10.4.min.css" />
+	<script type="text/javascript" src="script/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="script/jquery-ui-1.10.4.min.js"></script>
+	<script type="text/javascript" src="script/jquery.plugin.js"></script>
+	<script type="text/javascript" src="script/jquery.countdown.js"></script>
+	<script type="text/javascript"	>
+
+		$(document).ready(function(){
+		    $(document).bind("contextmenu",function(e){
+		        return false;
+		    });
+		});
+
+		var ultimoClickDerecho = 0;
+		var personajeSeleccionado = "";
+		var nombre = "";
+		var curso = "";
+		var colegio = "";
+		var edad = "";
+		var fecha = "";
+		var puntos = 0;
+		var claveActual = "a";
+
+		$(document).ready(function(){
+			$( "#contenedor").load( "intro.html");
+		});
+
+		function GetUser(nombreLlave, clave)
+		{
+			var user = JSON.parse(localStorage.getItem(nombreLlave));
+			if (user !== null && user.clave == clave) {
+				return user;
+			}
+			return null;
+		}
+
+		function ChangeWorld()
+		{
+			var user = JSON.parse(localStorage.getItem(claveActual));
+			user.mundo = menuWorld;
+			localStorage.setItem(claveActual, JSON.stringify(user));
+		}
+
+		function AddPoints()
+		{
+			var user = JSON.parse(localStorage.getItem(claveActual));
+			user.puntos = user.puntos + 1;
+			localStorage.setItem(claveActual, JSON.stringify(user));
+		}
+
+		function ReturnCurrentWorld()
+		{
+			var user = JSON.parse(localStorage.getItem(claveActual));
+			return user.mundo;
+		}
+
+		function ReturnPoints()
+		{
+			var user = JSON.parse(localStorage.getItem(claveActual));
+			return user.puntos;
+		}
+
+		function SetCurrentWorld(world)
+		{
+			var user = JSON.parse(localStorage.getItem(claveActual));
+			user.mundo = world;
+			localStorage.setItem(claveActual, JSON.stringify(user));
+		}
+
+		function LastRightClick()
+		{
+			var date = new Date();
+        	var time = date.getTime();
+			return time;
+		}
+
+		function IsDoubleRightClick()
+		{
+			var clickDerechoActual = LastRightClick();
+			if((clickDerechoActual - ultimoClickDerecho) <= 500 )
+			{
+				return true;
+			}
+			else
+			{
+				ultimoClickDerecho = clickDerechoActual;
+				return false;
+			}
+		}
+
+		function getRandomArbitrary(min, max) {
+		    return Math.round(Math.random() * (max - min) + min);
+		}
+
+		function CrearContador(contenedor, segundos, alFinalizar)
+		{
+			var fechaLimite = new Date();
+			fechaLimite.setSeconds(fechaLimite.getSeconds() + segundos);
+			$(contenedor).countdown({
+				until: fechaLimite, 
+				format: "MS",
+				compact: true,
+				timeSeparator: ":",
+				onExpiry: alFinalizar
+			});
+		}
+
+	</script>
+</head>
+<body>
+	<div id="contenedor"></div>
+</body>
+</html>

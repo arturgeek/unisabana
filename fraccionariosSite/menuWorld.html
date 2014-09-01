@@ -1,0 +1,252 @@
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/escena2/fondo.png');
+}
+
+.principal
+{
+	-webkit-box-shadow: 0px 0px 20px #ffffff;
+	box-shadow: 0px 0px 20px #ffffff;
+	-webkit-animation: shining 1s infinite;
+	animation: shining 1s infinite;
+	height: 125px;
+	margin: 29px auto;
+	width: 125px;
+}
+
+@-webkit-keyframes shining
+{
+	0% {
+		-webkit-box-shadow: 0px 0px 20px #ffffff;
+		box-shadow: 0px 0px 20px #ffffff;
+	}
+	50% {
+		-webkit-box-shadow: 0px 0px 200px #ffffff;
+		box-shadow: 0px 0px 100px #ffffff;
+	}
+	100% {
+		-webkit-box-shadow: 0px 0px 20px #ffffff;
+		box-shadow: 0px 0px 20px #ffffff;
+	}
+}
+
+@keyframes shining
+{
+	0% {
+		-webkit-box-shadow: 0px 0px 20px #ffffff;
+		box-shadow: 0px 0px 20px #ffffff;
+	}
+	50% {
+		-webkit-box-shadow: 0px 0px 200px #ffffff;
+		box-shadow: 0px 0px 100px #ffffff;
+	}
+	100% {
+		-webkit-box-shadow: 0px 0px 20px #ffffff;
+		box-shadow: 0px 0px 20px #ffffff;
+	}
+}
+
+.map .world,
+.principal
+{
+	border-radius: 100%;
+	background-clip: padding-box;
+}
+
+.map
+{
+	bottom: 110px;
+	position: absolute;
+	right: 10px;
+	text-align: center;
+	width: 600px;
+}
+
+.map .world
+{
+	background-repeat: no-repeat;
+	background: white;
+
+	background-color: rgba(256,256,256,0.0);
+	cursor: pointer;
+	display: inline-block;
+	height: 184px;
+	line-height: 150px;
+	width: 184px;
+}
+
+#btnRio
+{
+	background-image: url('images/escena2/bt1.png');
+}
+
+#btnCueva
+{
+	background-image: url('images/escena2/bt2.png');
+}
+
+#btnMontana
+{
+	background-image: url('images/escena2/bt3.png');
+}
+
+#btnBosque
+{
+	background-image: url('images/escena2/bt4.png');
+}
+
+#btnLadera
+{
+	background-image: url('images/escena2/bt5.png');
+}
+
+#btnCima
+{
+	background-image: url('images/escena2/bt6.png');
+}
+
+.titulo
+{
+	background-image: url('images/escena2/titulo.png');
+	height: 50px;
+	left: 80px;
+	position: absolute;
+	top: 50px;
+	width: 640px;
+}
+
+.etiqueta
+{
+	background-image: url('images/escena2/etiqueta.png');
+	height: 264px;
+	left: -40px;
+	position: absolute;
+	top: -15px;
+	width: 233px;
+}
+
+.guia
+{
+	background-image: url('images/escena2/personaje.png');
+	height: 120px;
+	left: 0px;
+	position: absolute;
+	top: 80px;
+	width: 121px;
+}
+
+.guia .anim
+{
+	background-image: url('images/escena2/matematin_callado.png');
+	height: 105;
+	left: 5px;
+	position: absolute;
+	top: 12px;
+	width: 106;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#contenedor").css("background-image", ""); 
+	$("#audio1").trigger("play");
+
+	$(".guia .anim").css("background-image", "url('images/escena2/matematin_hablando.gif')");
+
+	$(".audio").on('ended', function() {
+		$(".guia .anim").css("background-image", "url('images/escena2/matematin_callado.png')");
+	});
+});
+
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+
+$(document).ready(function(){
+
+	if(ReturnCurrentWorld() != 7)
+	{
+		ChangeWorld();
+	}
+	else
+	{
+		$("#contenedor" ).load("finish.html");
+	}
+
+	//console.log(ReturnCurrentWorld());
+	//for(var i = 0 ; i <= ReturnCurrentWorld() ; i++)
+	//for(var i = 0 ; i <= 6 ; i++)
+	//{
+		//switch(i)
+		switch(ReturnCurrentWorld())
+		{
+			case 1:{ $("#btnRio").append("<div class='principal'></div>"); }; break;
+			case 2:{ $("#btnCueva").append("<div class='principal'></div>"); }; break;
+			case 3:{ $("#btnMontana").append("<div class='principal'></div>"); }; break;
+			case 4:{ $("#btnBosque").append("<div class='principal'></div>"); }; break;
+			case 5:{ $("#btnLadera").append("<div class='principal'></div>"); }; break;
+			case 6:{ $("#btnCima").append("<div class='principal'></div>"); }; break;
+			case 7:{ $("#contenedor" ).load("finish.html"); }; break;
+		}
+	//}
+
+	$("#btnRio .principal").on("click", function(){
+		$( "#contenedor" ).load( "river.html" );
+	});
+
+	$("#btnCueva .principal").on("click", function(){
+		$( "#contenedor" ).load( "cave.html" );
+	});
+
+	$("#btnMontana .principal").on("click", function(){
+		$( "#contenedor" ).load( "mountain.html" );
+	});
+
+	$("#btnBosque .principal").on("click", function(){
+		$( "#contenedor" ).load( "woods.html" );
+	});
+
+	$("#btnLadera .principal").on("click", function(){
+		$( "#contenedor" ).load( "ladder.html" );
+	});
+
+	$("#btnCima .principal").on("click", function(){
+		$( "#contenedor" ).load( "top.html" );
+	});
+
+});
+
+</script>
+
+<div class="matematimThirdPerson"> </div>
+<div class="boat"> </div>
+<div class="register">
+
+	<div class="titulo"></div>
+	<div class="etiqueta"></div>
+	<div class="guia"><div class="anim"></div></div>
+
+	<div class='map'>
+		<div class="world" id="btnRio"></div>
+		<div class="world" id="btnCueva"></div>
+		<div class="world" id="btnMontana"></div>
+		<div class="world" id="btnBosque"></div>
+		<div class="world" id="btnLadera"></div>
+		<div class="world" id="btnCima"></div>
+	</div>
+
+</div>
+<audio class="audio" id='audio1'><source src="images/escena2/03_menuworld.mp3" type="audio/mpeg"></audio>

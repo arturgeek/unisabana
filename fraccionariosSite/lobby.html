@@ -1,0 +1,318 @@
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/escena1/fondo.png');
+}
+
+.login
+{
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-image: url('images/escena1/inicio.png');
+	display: none;
+	height: 547;
+	padding: 5px;
+	position: absolute;
+	right: 20px;
+	text-align: center;
+	top: -50px;
+	width: 326px;	
+}
+
+.login .form
+{
+	bottom: 143px;
+	height: 59px;
+	position: absolute;
+	right: 24px;
+	width: 185px;
+}
+
+.login .form input
+{
+	border: none;
+	background: white;
+	font-size: 20px;
+	height: 26px;
+	margin-bottom: 7px;
+	width: 100%;
+}
+
+.login .form input:focus
+{
+	-webkit-box-shadow: 0px 0px 5px #617d9e;
+	box-shadow: 0px 0px 5px #617d9e;
+}
+
+.login .btnLogin
+{
+	bottom: 24px;
+	cursor: pointer;
+	height: 66px;
+	left: 32px;
+	position: absolute;
+	width: 276px;
+}
+
+.register
+{
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-image: url('images/escena1/formulario.png');
+	height: 734;
+	padding: 5px;
+	position: absolute;
+	right: 20px;
+	text-align: center;
+	top: -172px;
+	width: 290px;
+}
+
+.register .form
+{
+	bottom: 137px;
+	height: 221px;
+	position: absolute;
+	right: 25px;
+	width: 143px;
+}
+
+.register .form input
+{
+	border: none;
+	background: white;
+	font-size: 20px;
+	height: 26px;
+	margin-bottom: 7px;
+	width: 100%;
+}
+
+.register .form input:focus
+{
+	-webkit-box-shadow: 0px 0px 5px #617d9e;
+	box-shadow: 0px 0px 5px #617d9e;
+}
+
+.register .btnRegister
+{
+	bottom: 78px;
+	cursor: pointer;
+	height: 57px;
+	left: 26px;
+	position: absolute;
+	width: 247px;
+}
+
+.register .btnLogin
+{
+	bottom: 9px;
+	cursor: pointer;
+	height: 57px;
+	left: 26px;
+	position: absolute;
+	width: 247px;
+}
+
+.matematin
+{
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+	background-image: url('images/escena1/gif2_personajepeque.gif');
+	background-repeat: no-repeat;
+	left: 100px;
+	height: 200px;
+	position: absolute;
+	top: 200px;
+	width: 199px;
+}
+
+.boat
+{
+	background-image: url('images/escena1/barco.png');
+	background-repeat: no-repeat;
+	bottom: 75px;
+	height: 166px;
+	right: 50px;
+	position: absolute;
+	width: 387px;
+}
+
+.boatMovement
+{
+	opacity: 1;
+	right: 300px;
+	-webkit-animation: boatAnimation 5s ease-in;
+	animation: boatAnimation 5s ease-in;
+}
+
+@-webkit-keyframes boatAnimation
+{
+	0% { 
+		opacity: 0;
+		right: 50px; 
+	}
+
+	1% { 
+		opacity: 1;
+		right: 50px; 
+	}
+
+	100% { 
+		opacity: 1;
+		right: 300px;
+	}
+}
+
+@keyframes boatAnimation
+{
+	0% { 
+		opacity: 0;
+		right: 50px; 
+	}
+
+	1% { 
+		opacity: 1;
+		right: 50px; 
+	}
+
+	100% { 
+		opacity: 1;
+		right: 300px;
+	}
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#contenedor").css("background-image", "url('images/escena1/fondo_hablando.gif')");
+	console.log(1);
+	$("#audio1").trigger("play");
+
+	$(".audio").on('ended', function() {
+		$("#contenedor").css("background-image", "url('images/escena1/fondo.png')");
+	});
+});
+
+$(".register .btnRegister").on("click", function(){
+
+	var dataOk = true;
+
+	dataOk = $("#txtNombre").val() == "" ? false : dataOk;
+	dataOk = $("#txtClave").val() == "" ? false : dataOk;
+	dataOk = $("#txtCurso").val() == "" ? false : dataOk;
+	dataOk = $("#txtColegio").val() == "" ? false : dataOk;
+	dataOk = $("#txtEdad").val() == "" ? false : dataOk;
+	dataOk = $("#txtFecha").val() == "" ? false : dataOk;
+
+	if(dataOk){
+
+		nombre = $("#txtNombre").val();
+		clave = $("#txtClave").val();
+		curso = $("#txtCurso").val();
+		colegio = $("#txtColegio").val();
+		edad = $("#txtEdad").val();
+		fecha = $("#txtFecha").val();
+
+		if(SaveUser()){
+			$(".boat").addClass("boatMovement");
+			setTimeout(function(){
+				menuWorld = 1;
+		        $( "#contenedor" ).load("menuWorld.html");
+		    }, 5000);
+		}
+	}
+	else{
+		alert("Por favor completa todos los campos.");
+	}
+
+});
+
+$(".register .btnLogin").on("click", function(){
+	$(".register").fadeOut(function(){
+		$(".login").fadeIn();
+	});
+});
+
+$(".login .btnLogin").on("click", function(){
+	var nombreLlave = $(".login .form .txtNombre").val();
+	var clave = $(".login .form .txtClave").val();
+	nombreLlave = nombreLlave.replace(/ /g,"_");
+	var user = GetUser(nombreLlave, clave);
+	if(user !== null)
+	{
+		nombre = user.nombre;
+		clave = user.clave;
+		curso = user.curso;
+		colegio = user.colegio;
+		edad = user.edad;
+		fecha = user.fecha;
+		menuWorld = user.mundo;
+		puntos = user.puntos;
+		claveActual = nombreLlave;
+
+        $( "#contenedor" ).load("menuWorld.html");
+	}
+	else
+	{
+		alert("Usuario o contraseña invalidos");
+	}
+});
+
+function SaveUser()
+{
+	nombre = $("#txtNombre").val();
+	clave = $("#txtClave").val();
+	curso = $("#txtCurso").val();
+	colegio = $("#txtColegio").val();
+	edad = $("#txtEdad").val();
+	fecha = $("#txtFecha").val();
+
+	var user = { 'nombre': nombre, 'clave': clave, 'curso': curso, 'colegio': colegio, 'edad': edad, 'fecha': fecha, "mundo": 1, 'puntos': 0 };
+	var nombreLlave = nombre.replace(/ /g,"_");
+
+	if (localStorage.getItem(nombreLlave) === null) {
+		localStorage.setItem(nombreLlave, JSON.stringify(user));
+		claveActual = nombreLlave;
+		return true;
+	}else{
+		alert("Nombre ya existe.");
+		return false;
+	}
+}
+
+</script>
+
+<div class="boat"> </div>
+<div class="register">
+	<div class="form">
+		<input type="text" id="txtNombre" /><br/>
+		<input type="password" id="txtClave" /><br/>
+		<input type="text" id="txtCurso" /><br/>
+		<input type="text" id="txtColegio" /><br/>
+		<input type="text" id="txtEdad" /><br/>
+		<input type="text" id="txtFecha" /><br/>
+	</div>
+	<div class="btnRegister"></div>
+	<div class="btnLogin"></div>
+</div>
+<div class="login">
+	<div class="form">
+		<input type="text" class="txtNombre" /><br/>
+		<input type="password" class="txtClave" />
+	</div>
+	<div class="btnLogin"></div>
+</div>
+<audio class='audio' id='audio1'><source src="images/escena1/02_lobby.mp3" type="audio/mpeg"></audio>

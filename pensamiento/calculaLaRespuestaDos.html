@@ -1,0 +1,83 @@
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/backgrounds/R6.png');
+}
+
+#respuestas
+{
+	margin: 0px auto;
+	position: relative;
+	width: 95%;
+}
+
+#respuestas .respuesta
+{
+	background: #1c8fcc;
+	background-clip: padding-box;
+	border: 2px solid white;
+	border-radius: 15px;
+	color: white;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 18px;
+	height: 30px;
+	line-height: 30px;
+	margin: 10px 15px;
+	padding: 5px;
+	width: 100px;
+}
+
+#respuestas .respuesta:hover{
+	background: #054872;
+}
+
+#baraja .carta img
+{
+	margin: 0;
+	height: 100%;
+	width: 100%;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function(){});
+
+$("#respuestas .respuesta").on("click", function() {
+	if($(this).hasClass("correcta"))
+	{
+		AvanzaPantalla();
+	}
+});
+
+function AvanzaPantalla()
+{
+	$( "#contenedor").load( "seleccionaOpcionUno.html");
+}
+
+</script>
+
+<div id="explicacion">
+	Mucha atención la piraña te va a comer, responde la siguiente pregunta:
+	<br/>
+	Blanco es, gallina lo pone, frito se come.
+	la respuesta esta en ingles.
+</div>
+<div id="respuestas">
+	<div class='respuesta'>Tomatoe</div>
+	<div class='respuesta'>Apple</div>
+	<div class='respuesta'>Rice</div>
+	<div class='respuesta'>Orange</div>
+	<div class='respuesta'>Banana</div>
+	<div class='respuesta'>Strawberry</div>
+	<div class='respuesta'>Lemmon</div>
+	<div class='respuesta'>Pineaple</div>
+	<div class='respuesta'>Beans</div>
+	<div class='respuesta'>Chesse</div>
+	<div class='respuesta'>Meat</div>
+	<div class='respuesta correcta'>Egg</div>
+	<div class='respuesta'>Carriot</div>
+</div>

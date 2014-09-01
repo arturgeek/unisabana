@@ -1,0 +1,78 @@
+body,
+html
+{
+	margin: 0;
+	padding: 0;
+}
+
+#contenedor
+{
+	border-radius: 12px;
+	background-clip: padding-box;
+	background-repeat: no-repeat;
+	background: gray;
+	height: 600px;
+	margin: 25px auto;
+	overflow: hidden;
+	position: relative;
+	width: 800px;
+}
+
+.matematin
+{
+	background-repeat: no-repeat;
+}
+
+.bear
+{
+	background-position: top;
+	background-repeat: no-repeat;
+}
+
+/*
+.timonel,
+.matematin,
+.guia
+{
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	position: absolute;
+}*/
+
+.circle
+{
+	border-radius: 100%;
+	text-align: center;
+}
+
+.blackboard
+{
+	background: blue;
+	height: 400px;
+	position: absolute;
+	width: 550px;
+}
+
+.blackboard .table
+{
+	background: white;
+	height: 380px;
+	left: 10px;
+	position: absolute;
+	top: 10px;
+	width: 530px;
+}
+
+.continuar
+{
+	background: red;
+	border-radius: 100%;
+	cursor: pointer;
+	height: 100px;
+	position: absolute;
+	text-align: center;
+	width: 100px;
+}

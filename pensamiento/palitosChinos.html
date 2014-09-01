@@ -1,0 +1,126 @@
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/backgrounds/R4.png');
+}
+
+#explicacion
+{
+	background: gray;
+	height: 150px;
+	margin: 20px auto;
+	text-align: center;
+	width: 700px;
+}
+
+#palillosOrigen,
+#palillosDestino
+{
+	border: 1px solid black;
+	background: red;
+	position: absolute;
+	vertical-align: top;
+	width: 250px;
+}
+
+#palillosOrigen
+{
+	height: 181px;
+	left: 245px;
+	top: 215px;
+}
+
+#palillosDestino
+{
+	bottom: 25px;
+	height: 60px;
+	right: 10px;
+}
+
+.palillo
+{
+	background: black;
+	border-radius: 25px;
+	background-clip: padding-box;
+	margin: 7px;
+	height: 15px;
+	width: 240px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+var draggedItem = null;
+
+$(document).ready(function(){
+
+	for(var i = 0 ; i < 8 ; i++)
+		AgregarPalillo();
+
+	CrearContador("#contador", 120, TerminaContador);
+});
+
+$(document).bind('mousemove', function (e) {
+    if(draggedItem != null)
+    {
+    	$(draggedItem).offset({
+            left: e.pageX,
+            top: e.pageY
+        });
+    }
+});
+
+$("#palillosOrigen .palillo").bind("contextmenu",function(e){
+	if(draggedItem == null)
+	{
+		draggedItem = this;
+		console.log(draggedItem);
+	}
+});
+
+$("#palillosDestino").on("click", function(){
+	if(draggedItem != null)
+	{
+		$(draggedItem).fadeOut(function(){
+			AgregarPalillo();
+			draggedItem = null;
+		});
+	}
+});
+
+function AgregarPalillo()
+{
+	$("#palillosOrigen").append("<div class='palillo'></div>");
+
+	$("#palillosOrigen").children(".palillo").last().draggable({
+	    revert: "invalid"
+	});
+
+	$("#palillosOrigen").children(".palillo").last().bind("contextmenu",function(e){
+	if(draggedItem == null)
+	{
+		draggedItem = this;
+		console.log(draggedItem);
+	}
+});
+}
+
+function TerminaContador()
+{
+	$( "#contenedor").load( "encuentraElNaipe.html");
+}
+
+</script>
+
+<div id="explicacion">
+	Mueve los palillos de un extremo a otro, para tomarlos has click derecho en el palillo que desees mover y arrastralo hasta la zona demarcada
+	en el recuadro. 
+	<br/>
+	<br/>
+	Revisa el tiempo restante que tienes.
+	<h2 id='contador'></h2>
+</div>
+<div id="palillosOrigen"></div>
+<div id="palillosDestino"></div>

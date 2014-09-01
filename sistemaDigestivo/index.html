@@ -1,0 +1,89 @@
+<html>
+<head>
+	<meta charset='UTF-8'/>
+	<title>El sistema digestivo</title>
+	<link href='http://fonts.googleapis.com/css?family=Luckiest+Guy' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" href="css/jquery-ui-1.10.4.min.css" />
+	<script type="text/javascript" src="script/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="script/jquery-ui-1.10.4.min.js"></script>
+	<script type="text/javascript">
+
+		/*
+		idioma
+		Español: 1
+		Ingles: 2
+		*/
+		var idioma = 1;
+		var Visual = 0;
+		var Auditivo = 0;
+		var LectoEscritor = 0;
+		var Kinestesico = 0;
+		var ultimaEscena = "";
+
+		$(document).ready(function(){
+
+			CambiarEscena("1introduccion.html");
+
+			$("#contenedor .ingles").on("click", function(){
+				idioma = 2;
+			});
+
+			$("#contenedor .castellano").on("click", function(){
+				idioma = 1;
+			});
+
+			$("#contenedor .vocabulario").on("click", function(){
+				$("#pnlEmergente").fadeIn();
+				if(idioma == 1)
+					$( "#pnlIframe" ).attr("src", "resources/Vocabulario/interaction_html5.html");
+				else
+					$( "#pnlIframe" ).attr("src", "resources/Vocabulary/interaction_html5.html");
+			});
+
+			$("#contenedor .mapaOrganos").on("click", function(){
+				if(ultimaEscena.split('.')[0].replace("escena", "") >= 5)
+					CambiarEscena("escena5.html");
+			});
+
+			$("#contenedor .visualizacion").on("click", function(){
+				if($('#pnlTipoAprendizaje').is(':visible'))
+					$("#pnlTipoAprendizaje").hide("slide", { direction: "left" }, 1000);
+				else
+					$("#pnlTipoAprendizaje").show("slide", { direction: "left" }, 1000);
+			});
+
+			$("#pnlEmergente").on("click", function(){
+				$( "#pnlIframe" ).attr("src", "");	
+				$(this).fadeOut();
+			});
+		});
+		
+		function CambiarEscena(escena)
+		{
+			ultimaEscena = escena;
+			$( "#contenedor .tablero").load(ultimaEscena);
+		}
+
+	</script>
+</head>
+<body>
+	<div id="contenedor">
+		<div class='tablero'></div>
+		<div class='opcion ingles'><span>Change</span></div>
+		<div class='opcion castellano'><span>Cambiar</span></div>
+		<div class='opcion vocabulario'><span>Glosario</span></div>
+		<div class='opcion mapaOrganos'><span>Organos</span></div>
+		<div class='opcion visualizacion'><span>Modelo</span></div>
+		<div id="pnlTipoAprendizaje">
+			<div class='tipo tituloEncabezado'>Lector</div>
+			<div class='tipo tituloEncabezado'>Kinestésico</div>
+		</div>
+	</div>
+	
+	<div id="pnlEmergente">
+		<img src="images/cancel.png" alt="cerrar" />
+		<iframe id="pnlIframe"></iframe>
+	</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/backgrounds/R1.png');
+}
+
+.bienvenida
+{
+	background-image: url('images/RE1/formulario.png');
+	height: 253px;
+	margin: 20px auto;
+	position: absolute;
+	right: 50px;
+	top: 50px;
+	width: 245px;
+}
+
+.bienvenida input
+{
+	display: block;
+	margin-left: 6px;
+	height: 31px;
+	width: 235px;
+}
+
+#txtNonmbre
+{
+	margin-top: 54px;
+}
+
+#txtGrado
+{
+	margin-top: 53px;
+}
+
+#txtEdad
+{
+	margin-top: 41px;
+}
+
+#btnContinuar
+{
+	margin-left: 0px;
+	margin-top: 11px;
+	width: 100%;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$("#btnContinuar").on("click", function(){
+	if($("#txtNonmbre").val().trim() != "" && $("#txtGrado").val().trim() != "" && $("#txtEdad").val().trim() != "")
+		$( "#contenedor").load( "escogePersonaje.html");
+	else
+		alert("Completa los campos para continuar.");
+});
+
+</script>
+
+<div class="bienvenida">
+	<input type="text" id="txtNonmbre" />
+	<input type="text" id="txtGrado" />
+	<input type="text" id="txtEdad" />
+	<input type="button" id="btnContinuar" value="Continuar" />
+</div>

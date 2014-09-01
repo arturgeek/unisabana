@@ -1,0 +1,118 @@
+<style type="text/css">
+
+.contenidoCapitulo
+{
+	background: #71d2db;
+	font-family: 'Exo', sans-serif;
+	height: 100%;
+	padding: 20px;
+	text-align: center;
+	width: 100%;
+}
+
+.contenidoCapitulo .respuestas .respuesta{
+	background: #1c8fcc;
+	background-clip: padding-box;
+	border: 5px solid white;
+	border-radius: 15px;
+	color: white;
+	cursor: pointer;
+	font-size: 18px;
+	margin: 15px auto;
+	padding: 15px;
+	width: 70%;
+}
+
+.contenidoCapitulo .respuestas .respuesta:hover{
+	background: #054872;
+}
+
+</style>
+
+<script type="text/javascript">
+
+var preguntaActualLectura = 0;
+var puntos = 0;
+
+$(document).ready(function(){
+	SiguientePreguntaLectura(preguntaActualLectura);
+});
+
+function SiguientePreguntaLectura(preguntaActualLectura)
+{
+	var pregunta = Array();
+	switch(preguntaActualLectura)
+	{
+		case 0: 
+		{
+			pregunta.push("<h3 class='tituloEncabezado'>__________ can rip some food, like meat or chicken?</h3>");
+			pregunta.push("<div class='respuestas'>");
+			pregunta.push("<div class='respuesta'>Molars</div>");
+			pregunta.push("<div class='respuesta correcta'>Canine</div>");
+			pregunta.push("<div class='respuesta'>Incives</div>");
+			pregunta.push("</div>");
+		}; break;
+
+		case 1:
+		{
+			pregunta.push("<h3 class='tituloEncabezado'>On of these categories CAN CUT the food</h3>");
+			pregunta.push("<div class='respuestas'>");
+			pregunta.push("<div class='respuesta'>Molars</div>");
+			pregunta.push("<div class='respuesta'>Canine</div>");
+			pregunta.push("<div class='respuesta correcta'>Incives</div>");
+			pregunta.push("<div class='respuesta'>None of the options</div>");
+			pregunta.push("</div>");
+		}; break;
+
+		case 2:
+		{
+			pregunta.push("<h3 class='tituloEncabezado'>Esta es una de las funciones de la saliva</h3>");
+			pregunta.push("<div class='respuestas'>");
+			pregunta.push("<div class='respuesta'>Disuelve el bolo con acidos</div>");
+			pregunta.push("<div class='respuesta correcta'>Lubrica el bolo alimenticio</div>");
+			pregunta.push("<div class='respuesta'>Absorbe los alimentos del organismo</div>");
+			pregunta.push("<div class='respuesta'>Desecha los componentes que no se pueden absorber</div>");
+			pregunta.push("</div>");
+		}; break;
+
+		case 3:
+		{
+			pregunta.push("<h3 class='tituloEncabezado'>Molars can grind grains, like beans or rise</h3>");
+			pregunta.push("<div class='respuestas'>");
+			pregunta.push("<div class='respuesta correcta'>Correct</div>");
+			pregunta.push("<div class='respuesta'>Incorrect</div>");
+			pregunta.push("</div>");
+		}; break;
+
+		case 4:
+		{
+			pregunta.push("<h3 class='tituloEncabezado'>Hay diferentes clases de saliva</h3>");
+			pregunta.push("<div class='respuestas'>");
+			pregunta.push("<div class='respuesta correcta'>Correcto</div>");
+			pregunta.push("<div class='respuesta'>Incorrecto</div>");
+			pregunta.push("</div>");
+		}; break;
+
+		case 5:
+		{
+			CambiarEscena("8juegoMasticar.html");
+		}; break;
+	}
+
+	$(".contenidoCapitulo").html(pregunta.join(''));
+
+	$(".respuestas").find(".respuesta").on("click", function(){
+		preguntaActualLectura++;
+		if($(this).hasClass("correcta"))
+			puntos++;
+		SiguientePreguntaLectura(preguntaActualLectura);
+	});
+}
+
+</script>
+
+<div class="contenidoCapitulo">
+
+
+
+</div>

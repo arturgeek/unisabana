@@ -1,0 +1,54 @@
+<script type="text/javascript">
+
+$(".contenidoCapitulo .botonIngles").on("click", function(){
+	idioma = 2;
+	CambiarEscena("3dialogoInicial.html");
+});
+
+$(".contenidoCapitulo .botonEspanol").on("click", function(){
+	idioma = 1;
+	CambiarEscena("3dialogoInicial.html");
+});
+
+</script>
+<style type="text/css">
+
+.contenidoCapitulo
+{
+	background-image: url('images/escena2/fondo.png');
+	position: absolute;
+	height: 600px;
+	left: 0px;
+	top: 0px;
+	width: 800px;
+}
+
+.contenidoCapitulo .botonIngles
+{
+	background-image: url('images/escena2/bt_ingles.png');
+	cursor: pointer;
+	height: 134px;
+	left: 85px;
+	position: absolute;
+	top: 203px;
+	width: 243px;
+}
+
+
+.contenidoCapitulo .botonEspanol
+{
+	background-image: url('images/escena2/bt_espanol.png');
+	cursor: pointer;
+	height: 134px;
+	position: absolute;
+	right: 85px;
+	top: 203px;
+	width: 243px;
+}
+
+</style>
+
+<div class='contenidoCapitulo'>
+	<div class='botonIngles'></div>
+	<div class='botonEspanol'></div>
+</div>

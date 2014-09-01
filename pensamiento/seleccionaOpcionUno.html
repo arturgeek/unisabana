@@ -1,0 +1,69 @@
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/backgrounds/R6.png');
+}
+
+#respuestas
+{
+	margin: 0px auto;
+	position: relative;
+	width: 95%;
+}
+
+#respuestas .respuesta{
+	background: #1c8fcc;
+	background-clip: padding-box;
+	border: 2px solid white;
+	border-radius: 15px;
+	color: white;
+	cursor: pointer;
+	font-size: 18px;
+	margin: 15px auto;
+	padding: 10px;
+	width: 90%;
+}
+
+#respuestas .respuesta:hover{
+	background: #054872;
+}
+
+#baraja .carta img
+{
+	margin: 0;
+	height: 100%;
+	width: 100%;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function(){});
+
+$("#respuestas .respuesta").on("click", function() {
+	if($(this).hasClass("correcta"))
+	{
+		AvanzaPantalla();
+	}
+});
+
+function AvanzaPantalla()
+{
+	$( "#contenedor").load( "seleccionaOpcionDos.html");
+}
+
+</script>
+
+<div id="explicacion">
+	Mucha atención la piraña te va a comer, responde la siguiente pregunta:
+	<br/>
+	Conociendo el precio de un pasaje de tren, si vas con varios compañeros y hacen el mismo trayecto ¿como sabrías lo que tienes que pagar?
+</div>
+<div id="respuestas">
+	<div class='respuesta'>Suma</div>
+	<div class='respuesta'>Resta</div>
+	<div class='respuesta correcta'>Multiplicación</div>
+	<div class='respuesta'>División</div>
+</div>

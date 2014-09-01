@@ -1,0 +1,153 @@
+<style type="text/css">
+
+.contenidoCapitulo
+{
+	background: #71d2db;
+	background-image: url("images/escena5/fondo.png");
+	font-family: 'Exo', sans-serif;
+	height: 100%;
+	padding: 20px;
+	text-align: center;
+	width: 100%;
+}
+
+.organo
+{
+	cursor: pointer;
+	display: none;
+	height: 50px;
+	position: absolute;
+	width: 50px;
+}
+
+.cuerpo
+{
+	background-image: url("images/escena5/digestivo.png");
+	height: 348px;
+	width: 336px;
+
+	position: absolute;
+	top: 100px;
+	left: 400px;
+}
+
+.boca
+{
+	background-image: url("images/escena5/boca.png");
+	height: 42px;
+	width: 51px;
+	top: 133px;
+	left: 542px;
+}
+
+.esofago
+{
+	background-image: url("images/escena5/esofago.png");
+	height: 64px;
+	width: 29px;
+	top: 192px;
+	left: 553px;
+}
+
+.estomago
+{
+	background-image: url("images/escena5/estomago.png");
+	height: 80px;
+	width: 109px;
+	top: 245px;
+	left: 525px;
+}
+
+.higado
+{
+	background-image: url("images/escena12/higado.png");
+	height: 78px;
+	width: 132px;
+	top: 243px;
+	left: 487px;
+}
+
+.delgado
+{
+	background-image: url("images/escena5/intestinidelgado.png");
+	height: 94px;
+	width: 114px;
+	top: 311px;
+	left: 509px;
+}
+
+.grueso
+{
+	background-image: url("images/escena5/intestinogrueso.png");
+	height: 120px;
+	width: 161px;
+	top: 285px;
+	left: 483px;
+}
+
+.botones
+{
+	height: 348px;
+	left: 50px;
+	position: absolute;
+	top: 100px;
+	width: 336px;
+}
+
+.botones .boton
+{
+	background: #1c8fcc;
+	background-clip: padding-box;
+	border: 2px solid white;
+	border-radius: 15px;
+	color: white;
+	cursor: pointer;
+	font-size: 18px;
+	margin: 10px auto;
+	padding: 10px;
+	width: 70%;
+}
+
+.botones .boton:hover
+{
+	background: #054872;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(".activo").on("click", function(){
+	CambiarEscena("6bocaExplicacion.html");
+});
+
+$(".botones .boton").on("mouseenter", function(event){
+	event.stopImmediatePropagation();
+	$("." + $(this).attr("id")).fadeIn();
+}).on("mouseleave", function(event){
+	event.stopImmediatePropagation();
+	$("." + $(this).attr("id")).fadeOut();
+});
+
+</script>
+
+<div class='contenidoCapitulo'>
+
+	<div class="botones">
+		<div class='boton activo' id='boca'>Boca</div>
+		<div class='boton' id='esofago'>Esofago</div>
+		<div class='boton' id='higado'>Higado</div>
+		<div class='boton' id='estomago'>Estomago</div>
+		<div class='boton' id='delgado'>Delgado</div>
+		<div class='boton' id='grueso'>Grueso</div>
+	</div>
+
+	<div class='cuerpo'></div>
+	<div class='organo boca'></div>
+	<div class='organo esofago'></div>
+	<div class='organo higado'></div>
+	<div class='organo estomago'></div>
+	<div class='organo delgado'></div>
+	<div class='organo grueso'></div>
+
+</div>

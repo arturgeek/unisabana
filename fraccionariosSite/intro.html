@@ -1,0 +1,56 @@
+<script type="text/javascript">
+	
+	$(".btnContinuar").on("click", function(){
+		$( "#contenedor" ).load( "lobby.html", function(){
+			$("#txtFecha").datepicker({ dateFormat: 'dd-mm-yy' });
+		});
+	});
+
+	$(document).ready(function(){
+		$("#contenedor").css("background-image", "url('images/escena0/portada_hablando.gif')");
+		$("#audio1").trigger("play");
+
+		$(".audio").on('ended', function() {
+			$("#contenedor").css("background-image", "url('images/escena0/portada_normal.png')");
+		});
+	});
+
+</script>
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/escena0/fondo.png');
+}
+
+.titulo
+{
+	background-image: url('images/escena0/titulo.png');
+	height: 168px;
+	margin: 20px auto;
+	width: 698px;
+}
+
+.matematin
+{
+	background-image: url('images/escena0/personaje.gif');
+	height: 397px;
+	margin: -100px auto;
+	width: 397px;
+}
+
+.btnContinuar
+{
+	background-image: url('images/escena0/bt_1.png');
+	bottom: 25px;
+	cursor: pointer;
+	height: 253px;
+	position: absolute;
+	right: 25px;
+	width: 187px;
+}
+
+</style>
+
+<div class="btnContinuar"></div>
+<audio class="audio" id='audio1'><source src="images/escena0/01_bienvenida.mp3" type="audio/mpeg"></audio>

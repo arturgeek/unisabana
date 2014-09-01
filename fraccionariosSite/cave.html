@@ -1,0 +1,363 @@
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/escena4/cueva.png');
+}
+
+.marco
+{
+	background-image: url('images/escena4/marco.png');
+	height: 100%;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+}
+
+.titulo
+{
+	background-image: url('images/escena4/titulo.png');
+	height: 119px;
+	position: absolute;
+	left: 20px;
+	top: 28px;
+	width: 829px;
+}
+
+.guia
+{
+	background-image: url('images/escena4/guia.png');
+	height: 120px;
+	position: absolute;
+	right: 75px;
+	top: 25px;
+	width: 121px;
+}
+
+.blackboard
+{
+	left: 30px;
+	display: none;
+	top: 115px;
+}
+
+.blackboard .table
+{
+	background-color: #ffd091;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 100%;
+	left: 0px;
+	margin: 0;
+	top: 0px;
+	width: 100%;
+}
+
+.blackboard .table .completo
+{
+	height: 250px;
+	margin: 30px auto;
+	text-align: center;
+	width: 250px;
+}
+
+.blackboard .table .completo h3
+{
+	text-align: center;
+}
+
+.blackboard .table .completo span
+{
+	-webkit-box-shadow: inset 0px 0px 4px #000;
+	box-shadow: inset 0px 0px 4px #000;
+
+	height: 250px;
+	display: inline-block;
+}
+
+.blackboard .table .instruccion
+{
+	bottom: 10px;
+	font-weight: bold;
+	height: 61px;
+	position: absolute;
+	right: 10px;
+	text-align: center;
+	width: 344px;
+}
+
+.blackboard .table .puntosTotales
+{
+	font-size: 20px;
+	font-weight: bold;
+	height: 25px;
+	position: absolute;
+	left: 48px;
+	text-align: center;
+	top: 157px;
+	width: 50px;
+}
+
+.bear
+{
+	background-image: url('images/osa_quieta.png');
+	bottom: 20px;
+	height: 255px;
+	position: absolute;
+	right: 50px;	
+	width: 166px;
+}
+
+.palette
+{
+	background: #ffd091;
+	top: 134px;
+	display: none;
+	height: 134px;
+	right: 248px;
+	position: absolute;
+	width: 80px;
+}
+
+.palette span
+{	
+	background-clip: padding-box;
+	border-radius: 5px;
+	display: inline-block;
+	height: 42px;
+	margin: 0px 1px 5px;
+	width: 75px;
+}
+
+.palette span:first-child
+{
+	margin-top: 2px;
+}
+
+.RoyalBlue { background-color: #4169E1; }
+.red { background-color: #FF0000; }
+.Gold { background-color: #FFD700; }
+.GreenYellow { background-color: #ADFF2F; }
+.SeaGreen { background-color: #2E8B57; }
+.Turquoise { background-color: #40E0D0; }
+
+#btnContinuar
+{
+	background-image: url('images/escena4/bt_contimuar.png');
+	bottom: 35px;
+	cursor: pointer;
+	height: 44px;
+	left: 75px;
+	position: absolute;
+	width: 514px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#contenedor").css("background-image", "url('images/escena4/cueva.png')"); 
+});
+
+var selectedColor = "";
+
+$(".bear").on("click", function(){
+	Continuar();
+});
+
+$("#btnContinuar").on("click", function(){
+	Continuar();
+});
+
+$(".palette span").on("click", function(){
+	selectedColor = $(this).attr("class");
+});
+
+$(".audio").on('ended', function() {
+	$(".bear").css("background-image", "url('images/osa_quieta.png')");
+});
+
+function Continuar()
+{
+	switch($("#btnContinuar").attr("class"))
+	{
+		case "etapa0":{
+			$(".guia").fadeOut(function(){
+				$("#audio0").trigger("play");
+				$(".bear").css("background-image", "url('images/osa_habla.gif')");
+
+				$("#btnContinuar").attr("class", "etapa1");
+				$(".blackboard").fadeIn();
+				$(".blackboard").find(".table").html("<img src='images/escena4/ejer_1.png' />");
+
+				setTimeout(function() { Continuar(); },2000);
+			});
+		};break;
+
+		case "etapa1":{
+			$(".guia").fadeOut(function(){
+				$("#btnContinuar").attr("class", "etapa2");
+				$(".blackboard").fadeIn();
+				$(".blackboard").find(".table").html("<img src='images/escena4/ejer_2.png' />");
+
+				setTimeout(function() { Continuar(); },2000);
+			});
+		};break;
+
+		case "etapa2":{
+			$(".guia").fadeOut(function(){
+				$("#btnContinuar").attr("class", "etapa3");
+				$(".blackboard").fadeIn();
+				$(".blackboard").find(".table").html("<img src='images/escena4/ejer_3.png' />");
+				setTimeout(function() { Continuar(); },2000);
+			});
+		};break;
+
+		case "etapa3":{
+			$(".guia").fadeOut(function(){
+				$("#btnContinuar").attr("class", "etapa4");
+				$(".blackboard").fadeIn();
+				$(".blackboard").find(".table").html("<img src='images/escena4/ejer_4.png' />");
+				setTimeout(function() { Continuar(); },2000);
+			});
+		};break;
+
+		case "etapa4":{
+			$(".guia").fadeOut(function(){
+				$("#btnContinuar").attr("class", "etapa5");
+				$(".blackboard").fadeIn();
+				$(".blackboard").find(".table").html("<img src='images/escena4/ejer_5.png' />");
+				setTimeout(function() { Continuar(); },2000);
+			});
+		};break;
+
+		case "etapa5":{
+			$(".guia").fadeOut(function(){
+				$("#btnContinuar").attr("class", "etapa6");
+				$(".blackboard").fadeIn();
+				setTimeout(function() { Continuar(); },2000);
+				$(".blackboard").find(".table").html("<img src='images/escena4/ejer_6.png' />");
+			});
+		};break;
+
+		case "etapa6":{
+			$(".guia").fadeOut(function(){
+				$("#btnContinuar").attr("class", "etapa7");
+				$(".blackboard").fadeIn();
+				$(".blackboard").find(".table").html("<img src='images/escena4/ejer_7.png' />");
+			});
+		};break;
+
+		case "etapa7":{
+			$("#audio0").trigger("pause");
+			$("#audio1").trigger("play");
+			$(".bear").css("background-image", "url('images/osa_habla.gif')");
+
+			$("#btnContinuar").attr("class", "etapa8");
+			$("#btnContinuar").fadeOut(function(){
+				$(".palette").fadeIn();
+				CrearEjercicio(1);
+			});
+		};break;
+	}
+}
+
+function CrearEjercicio(numeroEjercicio){
+
+	switch(numeroEjercicio){
+		case 1:{
+			$(".blackboard").find(".table").css("background-image", "url('images/escena4/pint_1.png')");
+			construirRepresentacion(8,4,2);
+		}; break;
+		case 2:{
+			$(".blackboard").find(".table").css("background-image", "url('images/escena4/pint_2.png')");
+			construirRepresentacion(9,7,3);
+		}; break;
+		case 3:{
+			$(".blackboard").find(".table").css("background-image", "url('images/escena4/pint_3.png')");
+			construirRepresentacion(8,3,4);
+		}; break;
+		case 4:{
+			$(".blackboard").find(".table").css("background-image", "url('images/escena4/pint_4.png')");
+			construirRepresentacion(3,2,5);
+		}; break;
+		case 5:{
+			$(".blackboard").find(".table").css("background-image", "url('images/escena4/pint_5.png')");
+			construirRepresentacion(9,5,6);
+		}; break;
+		case 6:{
+			menuWorld = 3;
+			$( "#contenedor" ).load("menuWorld.html");
+		}; break;
+	}
+
+}
+
+function construirRepresentacion(partes, fraccion, siguienteEjercicio)
+{
+	$(".blackboard").find(".table").html("<div class='completo'></div>");
+
+	var widthParte = 0;
+
+	widthParte = 250 / partes;
+	widthParte -= 5;
+
+	for(var i = 0 ; i < partes ; i++)
+	{
+		$(".completo").append("<span></span>");
+	}
+
+	$(".blackboard").find(".table").append("<div class='instruccion'></span>");
+	$(".blackboard").find(".table").append("<div class='puntosTotales'>" + ReturnPoints() + "</div>");
+
+	$(".completo").find("span").each(function(index, parte){
+		$(this).width(widthParte);
+
+		$(this).on("click", function(){
+
+			if(typeof($(this).attr("class")) !== "undefined" && $(this).attr("class") != ""){
+				$(this).attr("class", "");
+			}else{
+				$(this).attr("class", selectedColor);
+			}
+			
+			var paintedCount = 0;
+			$(this).parent().find("span").each(function(indexSelection, parteSelected){
+				if(typeof($(this).attr("class")) !== "undefined" && $(this).attr("class") != ""){
+					paintedCount++;
+				}
+			});
+
+			if(paintedCount == fraccion)
+			{
+				AddPoints();
+				paintedCount = 0;
+				setTimeout(function() { CrearEjercicio(siguienteEjercicio); },500)
+			}
+		});	
+	});
+}
+
+</script>
+Dar click sobre el personaje para poder continuar
+<div class="titulo"></div>
+<div class="guia"></div>
+<div class="bear"></div>
+<div class="blackboard">
+	<div class="table">
+		
+	</div>
+</div>
+<div class="palette">
+	<span class="RoyalBlue"></span>
+	<span class="red"></span>
+	<span class="Gold"></span>
+	<span class="GreenYellow"></span>
+	<span class="SeaGreen"></span>
+	<span class="Turquoise"></span>
+</div>
+<div id="btnContinuar" class="etapa0"></div>
+<audio class="audio" id='audio0'><source src="images/escena4/explicacion.mp3" type="audio/mpeg"></audio>
+<audio class="audio" id='audio1'><source src="images/escena4/ejercicio.mp3" type="audio/mpeg"></audio>

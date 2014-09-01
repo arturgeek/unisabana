@@ -1,0 +1,323 @@
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/escena5/fondo.png');
+}
+
+.marco
+{
+	background-image: url('images/escena5/marco.png');
+	height: 100%;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+}
+
+.titulo
+{
+	background-image: url('images/escena5/titulo.png');
+	height: 119px;
+	position: absolute;
+	left: 20px;
+	top: 28px;
+	width: 829px;
+}
+
+.guia
+{
+	background-image: url('images/escena5/guia.png');
+	height: 120px;
+	position: absolute;
+	right: 75px;
+	top: 25px;
+	width: 121px;
+}
+
+.blackboard
+{
+	background: #ffd091;
+	display: none;
+	left: 35px;
+	top: 125px;
+}
+
+.blackboard .table
+{
+	background: #ffd091;
+	height: 300px;
+	left: 5px;
+	position: absolute;
+	text-align: center;
+	top: 30px;
+	width: 97%;
+}
+
+.blackboard .table .completo
+{
+	height: auto;
+	margin: 20% auto;
+	width: 300px;
+}
+
+.blackboard .table .completo h3
+{
+	text-align: center;
+}
+
+.blackboard .table .completo span
+{
+	-webkit-box-shadow: inset 0px 0px 4px #000;
+	box-shadow: inset 0px 0px 4px #000;
+
+	height: 40px;
+	display: inline-block;
+}
+
+.mini
+{
+	background: #ffd091;
+	height: 510px;
+	top: 52px;
+	width: 550px;
+}
+
+.mini .table 
+{
+	height: 300px;
+	left: 8px;
+	position: absolute;
+	text-align: center;
+	top: 50px;
+	width: 97%;
+}
+
+.mini .table span{
+	display: inline-block;
+	height: 66px;
+	margin: 5px;
+	width: 66px;
+}
+
+.mini .table .puntaje
+{
+	background-image: url('images/escena5/bt_actividad_contenido.png');
+	background-repeat: no-repeat;
+	height: 90px;
+	margin: 40px auto;
+	position: relative;
+	width: 90px;
+}
+
+.mini .table .puntaje .valor
+{
+	font-size: 20px;
+	left: 20px;
+	margin: 0px auto;
+	position: absolute;
+	top: 43px;
+	width: 50px;
+}
+
+.bear
+{
+	background-image: url('images/osa_quieta.png');
+	bottom: 20px;
+	height: 255px;
+	position: absolute;
+	right: 30px;
+	width: 166px;
+}
+
+#propiasBox,
+#impropiasBox,
+#mixtasBox
+{
+	bottom: 50px;
+	display: none;
+	height: 93px;
+	position: absolute;
+	width: 140px;	
+}
+
+#propiasBox
+{
+	background-image: url('images/escena5/caja_1.png');
+	left: 80px;
+}
+
+#impropiasBox
+{
+	background-image: url('images/escena5/caja_2.png');
+	left: 240px;
+}
+
+#mixtasBox
+{
+	background-image: url('images/escena5/caja_3.png');
+	left: 400px;
+}
+
+#btnContinuar
+{
+	background-image: url('images/escena5/bt_contimuar.png');
+	bottom: 35px;
+	cursor: pointer;
+	height: 44px;
+	left: 75px;
+	position: absolute;
+	width: 514px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#contenedor").css("background-image", "url('images/escena5/fondo.png')"); 
+
+	$(".audio").on('ended', function() {
+		$(".bear").css("background-image", "url('images/osa_quieta.png')");
+	});
+});
+
+var aciertos = 0;
+
+$(".bear").on("click", function(){
+	Continuar();
+});
+
+$("#btnContinuar").on("click", function(){
+	Continuar();
+});
+
+$(".palette span").on("click", function(){
+	selectedColor = $(this).attr("class");
+});
+
+function Continuar()
+{
+	switch($("#btnContinuar").attr("class"))
+	{
+		case "etapa0":{
+			$("#audio0").trigger("play");
+			$(".bear").css("background-image", "url('images/osa_habla.gif')");
+
+			$("#btnContinuar").attr("class", "etapa1");
+			$(".blackboard").fadeIn();
+			$(".blackboard").find(".table").html("<img src='images/escena5/eje_1.png' />");
+
+			setTimeout(function() { Continuar(); },8000);
+		};break;
+
+		case "etapa1":{
+			$("#btnContinuar").attr("class", "etapa2");
+			$(".blackboard").fadeIn();
+			$(".blackboard").find(".table").html("<img src='images/escena5/eje_2.png' />");
+
+			setTimeout(function() { Continuar(); },8000);
+		};break;
+
+		case "etapa2":{
+			$("#btnContinuar").attr("class", "etapa3");
+			$(".blackboard").fadeIn();
+			$(".blackboard").find(".table").html("<img src='images/escena5/eje_3.png' />");
+		};break;
+
+		case "etapa3":{
+			$("#audio0").trigger("pause");
+			$(".bear").css("background-image", "url('images/osa_quieta.png')");
+
+			$("#btnContinuar").attr("class", "etapa4");
+			$(".blackboard").fadeOut(function(){
+				$(this).addClass("mini");
+			}).fadeIn(function(){
+				$("#btnContinuar").fadeOut();
+				$("#propiasBox").fadeIn(function(){
+					$("#impropiasBox").fadeIn(function(){
+						$("#mixtasBox").fadeIn();
+					});	
+				});
+			});
+
+			$(".blackboard").find(".table").html("<h3>Arrastra cada fraccionario a su respectiva caja</h3>");
+			$(".blackboard").find(".table").append("<div class='puntaje'><div class='valor'>" + ReturnPoints() + "</div></div>");
+			$(".blackboard").find(".table").append("<span class='propio'><img src='images/escena5/ficha_1.png' /></span>");
+			$(".blackboard").find(".table").append("<span class='mixto'><img src='images/escena5/ficha_2.png' /></span>");
+			$(".blackboard").find(".table").append("<span class='propio'><img src='images/escena5/ficha_3.png' /></span>");
+			$(".blackboard").find(".table").append("<span class='impropio'><img src='images/escena5/ficha_4.png' /></span>");
+			$(".blackboard").find(".table").append("<span class='propio'><img src='images/escena5/ficha_5.png' /></span>");
+			$(".blackboard").find(".table").append("<span class='impropio'><img src='images/escena5/ficha_6.png' /></span>");
+			$(".blackboard").find(".table").append("<span class='propio'><img src='images/escena5/ficha_7.png' /></span>");
+
+			$(".blackboard").find(".table").find("span").each(function(index, opcion){
+				$(this).draggable({
+				    revert: "invalid"
+				});
+			});
+
+			$("#propiasBox").droppable({
+			    accept: function (elm) {
+			        if(elm.hasClass("propio"))
+			            return true;
+			        return false;
+			    },
+			    drop: function( event, ui ) {
+			    	$(ui.draggable).fadeOut();
+					ValidarRespuestas();
+				}
+			});
+
+			$("#impropiasBox").droppable({
+			    accept: function (elm) {
+			        if(elm.hasClass("impropio"))
+			            return true;
+			        return false;
+			    },
+			    drop: function( event, ui ) {
+			    	$(ui.draggable).fadeOut();
+					ValidarRespuestas();
+				}
+			});
+
+			$("#mixtasBox").droppable({
+			    accept: function (elm) {
+			        if(elm.hasClass("mixto"))
+			            return true;
+			        return false;
+			    },
+			    drop: function( event, ui ) {
+			    	$(ui.draggable).fadeOut();
+					ValidarRespuestas();
+				}
+			});
+
+		};break;
+	}
+}
+
+function ValidarRespuestas(){
+	aciertos++;
+	AddPoints();
+	$(".mini .table .puntaje .valor").html(ReturnPoints());
+	if(aciertos >= 7){
+		menuWorld = 4;
+		setTimeout(function() { $( "#contenedor" ).load("menuWorld.html"); },1000)
+	}
+}
+
+</script>
+Dar click sobre el personaje para poder continuar
+<div class="marco"></div>
+<div class="bear"></div>
+<div class="blackboard"><div class="table"></div></div>
+
+<div id="propiasBox"></div>
+<div id="impropiasBox"></div>
+<div id="mixtasBox"></div>
+
+<div id="btnContinuar" class='etapa0'></div>
+<div class="titulo"></div>
+<div class="guia"> </div>
+<audio class="audio" id='audio0'><source src="images/escena5/fraccionesporpiasimporpias.mp3" type="audio/mpeg"></audio>

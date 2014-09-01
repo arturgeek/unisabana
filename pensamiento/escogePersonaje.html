@@ -1,0 +1,99 @@
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/backgrounds/R2.png');
+}
+
+.personajes
+{
+	margin: 230px auto;
+	text-align: left;
+}
+
+.personajes .personaje
+{
+	border: 1px solid black;
+	cursor: pointer;
+	display: inline-block;
+	height: 300px;
+	margin-right: 10px;
+	width: 90px;
+}
+
+.personajes .personaje:first-child
+{
+	margin-left: 25px;
+}
+
+.personajes .personaje:hover
+{
+	-webkit-box-shadow: 0px 0px 10px black;
+	box-shadow: 0px 0px 10px black;
+}
+
+#av1
+{
+
+}
+
+#av2
+{
+	width: 130px;
+}
+
+#av3
+{
+	width: 140px;
+}
+
+#av4
+{
+	width: 115px;
+}
+
+#av5
+{
+	width: 125px;
+}
+
+#av6
+{
+	width: 70px;
+}
+
+.instrucciones .rojo
+{
+	color: red;
+}
+
+.instrucciones .verde
+{
+	color: lightgreen;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(".personajes .personaje").on("click", function(){
+	personajeSeleccionado = $(this).attr("id");
+	$("#contenedor").load("entradaSalon.html");
+});
+
+</script>
+
+<h2>Selecciona tu personaje</h2>
+
+<div class="personajes">
+	<div class='personaje' id='av1'>avatar1</div>
+	<div class='personaje' id='av2'>avatar2</div>
+	<div class='personaje' id='av3'>avatar3</div>
+	<div class='personaje' id='av4'>avatar4</div>
+	<div class='personaje' id='av5'>avatar5</div>
+	<div class='personaje' id='av6'>avatar6</div>
+</div>
+<div class='instrucciones'>
+	Debes usar la mano <span class='rojo'>contraria a la mano con la que escribes</span> para realizar la tarea
+	<span class='verde'> en todas las actividades</span><span class='rojo'> Adelante!! Animo</span>
+</div>

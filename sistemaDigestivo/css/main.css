@@ -1,0 +1,162 @@
+body,
+html
+{
+	font-family: 'Exo', sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+#contenedor
+{
+	border-radius: 15px;
+	background-clip: padding-box;
+	background-repeat: no-repeat;
+	background: gray;
+	height: 625px;
+	margin: 5px auto;
+	overflow: hidden;
+	position: relative;
+	width: 1000px;
+}
+
+#contenedor .tablero
+{
+	border-radius: 12px;
+	background-clip: padding-box;
+	background: white;
+	height: 600px;
+	margin: 10px auto;
+	overflow: hidden;
+	position: relative;
+	width: 800px;
+}
+
+#contenedor .opcion
+{
+	background-repeat: no-repeat;
+	background-position: top center;
+	cursor: pointer;
+	height: 90px;
+	position: absolute;
+	width: 64px;
+}
+
+#contenedor .opcion span
+{
+	bottom: 0px;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+}
+
+#contenedor .ingles
+{
+	background-image: url('../images/United-States-64.png');
+	right: 20px;
+	top: 20px;	
+}
+
+#contenedor .castellano
+{
+	background-image: url('../images/Colombia-64.png');
+	right: 20px;
+	top: 120px;
+}
+
+#contenedor .vocabulario
+{
+	background-image: url('../images/Book-64.png');
+	right: 20px;
+	top: 215px;
+}
+
+#contenedor .mapaOrganos
+{
+	background-image: url('../images/Tree-Structure-64.png');
+	left: 20px;
+	top: 20px;
+}
+
+#contenedor .visualizacion
+{
+	background-image: url('../images/Metro-Viewer-Blue-64.png');
+	left: 20px;
+	top: 130px;
+}
+
+#pnlEmergente
+{
+	background: black;
+	border-radius: 15px;
+	background-clip: padding-box;
+	display: none;
+	height: 600px;
+	left: 0;
+	margin-left: auto;
+	margin-right: auto;
+	position: absolute;
+	right: 0;
+	top: 18px;
+	width: 850px;
+}
+
+#pnlEmergente img
+{
+	cursor: pointer;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+
+#pnlIframe
+{
+	border: none;
+	height: 615px;
+	left: 35px;
+	margin: 0px auto;
+	position: absolute;
+	width: 780px;
+}
+
+#pnlTipoAprendizaje
+{	
+	background: #71d2db;
+	background-clip: padding-box;
+	border-bottom: 5px solid #5e5e5e;
+	border-right: 5px solid #5e5e5e;
+	border-top: 5px solid #5e5e5e;
+	border-radius: 0 12px 12px 0;
+	display: none;
+	left: 113px;
+	position: absolute;
+	top: 150px;
+	width: 250px;
+}
+
+#pnlTipoAprendizaje .tipo
+{
+	background: #791e73;
+	background-clip: padding-box;
+	border: 2px solid white;
+	border-radius: 12px;
+	cursor: pointer;
+	height: 40px;
+	line-height: 40px;
+	margin: 10px auto;
+	text-align: center;
+	width: 90%;
+}
+
+.tituloEncabezado
+{
+	background: #791e73;
+	background-clip: padding-box;
+	border: 2px solid white;
+	border-radius: 15px;
+	display: block;
+	font-size: 24px;
+	margin: 10px auto 30px;
+	padding: 5px;
+	text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+	width: 70%;
+}

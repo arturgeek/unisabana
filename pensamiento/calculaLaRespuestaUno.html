@@ -1,0 +1,95 @@
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/backgrounds/R6.png');
+}
+
+#respuestas
+{
+	margin: 0px auto;
+	position: relative;
+	width: 95%;
+}
+
+#respuestas .respuesta
+{
+	background: #1c8fcc;
+	background-clip: padding-box;
+	border: 2px solid white;
+	border-radius: 15px;
+	color: white;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 14px;
+	height: 30px;
+	line-height: 30px;
+	margin: 5px 10px;
+	padding: 5px;
+	width: 100px;
+}
+
+#respuestas .respuesta:hover{
+	background: #054872;
+}
+
+#baraja .carta img
+{
+	margin: 0;
+	height: 100%;
+	width: 100%;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function(){ });
+
+$("#respuestas .respuesta").on("click", function() {
+	if($(this).hasClass("correcta"))
+	{
+		AvanzaPantalla();
+	}
+});
+
+function AvanzaPantalla()
+{
+	$( "#contenedor").load( "rompecabezas.html");
+}
+
+</script>
+
+<div id="explicacion">
+	Mucha atención la piraña te va a comer, la respuesta tendrás hasta 120 segundos para responder el siguiente problema:
+	<br/>
+	Juan estaba en su casa sin hacer nada y penso en un numero, le sumo 16 y luego le resto 25, si otuvo el numero 16 ¿que numero pensó juan?
+	la respuesta esta en ingles.
+</div>
+<div id="respuestas">
+	<div class='respuesta'>one</div>
+	<div class='respuesta'>twelve</div>
+	<div class='respuesta'>sixteen</div>
+	<div class='respuesta'>forty-six</div>
+	<div class='respuesta'>fifty-three</div>
+	<div class='respuesta'>eleven</div>
+	<div class='respuesta correcta'>twenty-five</div>
+	<div class='respuesta'>twenty-seven</div>
+	<div class='respuesta'>twenty-two</div>
+	<div class='respuesta'>thirteen</div>
+	<div class='respuesta'>fifteen</div>
+	<div class='respuesta'>fifty</div>
+	<div class='respuesta'>seventy-five</div>
+	<div class='respuesta'>eighty-one</div>
+	<div class='respuesta'>nine</div>
+	<div class='respuesta'>four</div>
+	<div class='respuesta'>fourteen</div>
+	<div class='respuesta'>five</div>
+	<div class='respuesta'>twenty-four</div>
+	<div class='respuesta'>nineteen</div>
+	<div class='respuesta'>twenty</div>
+	<div class='respuesta'>ten</div>
+	<div class='respuesta'>six</div>
+	<div class='respuesta'>zero</div>
+	<div class='respuesta'>eight</div>
+</div>

@@ -1,0 +1,142 @@
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/backgrounds/R3.png');
+}
+
+.salon
+{
+	height: 100%;
+	margin: 0;
+	position: relative;
+	width: 100%;
+}
+
+.salon .puesto
+{
+	background: black;
+	height: 50px;
+	position: absolute;
+	width: 50px;
+	z-index: 2;
+}
+
+#puesto1
+{
+	top: 250px;
+	left: 155px;
+}
+
+#puesto2
+{
+	top: 260px;
+	left: 470px;
+}
+
+#puesto3
+{
+	top: 415px;
+	left: 67px;
+}
+
+#puesto4
+{
+	top: 415px;
+	left: 225px;
+}
+
+#puesto5
+{
+	top: 410px;
+	left: 390px;
+}
+
+#puesto6
+{
+	top: 410px;
+	left: 550px;
+}
+
+.salon .libre
+{
+	background: green;
+}
+
+.salon .puerta
+{
+	background-color: brown;
+	top: 0px;
+	height: 5px;
+	position: absolute;
+	left: 380px;
+	width: 50px;
+	z-index: 10;
+}
+
+.salon .personaje
+{
+	border-radius: 50%;
+	background-clip: padding-box;
+	background-repeat: no-repeat;
+	background-position: center;
+	display: none;
+	height: 100px;
+	position: absolute;
+	left: 350px;
+	top: 10px;
+	width: 100px;
+	z-index: 2;
+}
+
+</style>
+
+<script type="text/javascript">
+
+var enPosicion = false;
+var personajeVisible = false;
+
+$(document).bind("contextmenu",function(e){
+   if(!enPosicion && !personajeVisible)
+   {
+   		$(".salon .personaje").css("background-image", "url('images/RE3/" + personajeSeleccionado + ".png')");
+   		$(".salon .personaje").show();
+   		personajeVisible = true;
+   }
+   else
+   {
+   		if(enPosicion)
+   		{
+   			if(IsDoubleRightClick())
+   			{
+   				$( "#contenedor").load( "palitosChinos.html");
+   			}
+   		}
+   }
+});
+
+$(".salon .puesto").on("click", function(){
+	if(personajeVisible && !enPosicion)
+	{
+		var topPuesto = $(this).css("top").replace("px","") - 25;
+		var leftPuesto = $(this).css("left").replace("px","") - 25;
+		$(".salon .personaje").animate({
+			top: topPuesto,
+			left: leftPuesto
+		}, 2000);
+		enPosicion = true;
+	}
+});
+
+</script>
+
+<div class="salon">
+	<div class="puesto" id="puesto1"></div>
+	<div class="puesto" id="puesto2"></div>
+	<div class="puesto" id="puesto3"></div>
+	<div class="puesto" id="puesto4"></div>
+	<div class="puesto" id="puesto5"></div>
+	<div class="puesto" id="puesto6"></div>
+	<div class="puerta"></div>
+	<div class="personaje"></div>
+</div>

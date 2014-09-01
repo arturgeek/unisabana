@@ -1,0 +1,359 @@
+<style type="text/css">
+
+.contenidoCapitulo
+{
+	background: #71d2db;
+	height: 100%;
+	overflow: hidden;
+	padding: 20px;
+	text-align: center;
+	width: 100%;
+}
+
+.titulo{
+	background: #791e73;
+	background-clip: padding-box;
+	border: 2px solid white;
+	border-radius: 15px;
+	display: block;
+	font-size: 24px;
+	margin: 10px auto 30px;
+	padding: 10px;
+	text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+	width: 70%;
+}
+
+.boca
+{
+	background-image: url("images/escena6/boca.png");
+	height: 348px;
+	position: absolute;
+	right: 50px;
+	top: 150px;
+	width: 336px;
+}
+
+.botones
+{
+	height: 348px;
+	left: 50px;
+	position: absolute;
+	top: 150px;
+	width: 336px;
+}
+
+.botones .boton
+{
+	background: #1c8fcc;
+	background-clip: padding-box;
+	border: 3px solid white;
+	border-radius: 15px;
+	color: white;
+	cursor: pointer;
+	font-size: 18px;
+	margin: 15px auto;
+	padding: 10px;
+	width: 70%;
+}
+
+.botones .boton:hover{
+	background: #054872;
+}
+
+.panelInformacion
+{
+	background: rgb(113,210,219);
+	display: none;
+	height: 100%;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+}
+
+.panelInformacion .seleccion
+{
+	height: 100%;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+}
+
+.panelInformacion .seleccion .opciones
+{
+	background: #791e73;
+	background-clip: padding-box;
+	border: 3px solid white;
+	border-radius: 25px;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 24px;
+	height: 150px;
+	line-height: 150px;
+	margin: 200px auto 0;
+	text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+	width: 300px;
+}
+
+.panelInformacion .seleccion .opciones:hover{
+	background: #054872;
+}
+
+.panelInformacion .seleccion .opciones:first-child
+{
+	margin-right: 25px;
+}
+
+/*.texto
+{
+	display: none;
+}*/
+
+.soloVideo,
+.VideoTexto
+{
+	display: none;
+	padding: 10px;
+}
+
+.soloVideo
+{
+	width: 100%;
+	height: 90%;
+}
+
+.VideoTexto .video,
+.VideoTexto .texto
+{
+	vertical-align: top;
+}
+
+.VideoTexto .video
+{
+	height: 40%;
+	margin: 0 auto 10px;
+	width: 50%;
+}
+
+.VideoTexto .texto
+{
+	height: 48%;
+	margin: 0 auto;
+	overflow: auto;
+	text-align: left;
+	width: 100%;
+}
+
+.volver
+{
+	background: #1c8fcc;
+	background-clip: padding-box;
+	border: 3px solid white;
+	border-radius: 15px;
+	bottom: 5px;
+	color: white;
+	cursor: pointer;
+	font-size: 18px;
+	left: 300px;
+	padding: 5px;
+	position: absolute;
+	text-align: center;
+	width: 20%;
+}
+
+</style>
+
+<script type="text/javascript">
+
+var Organo = "";
+
+$(".boton").on("click", function(){
+	Organo = $(this).attr("id");
+	if(Organo != "test" && Organo != "continuar"){
+		$(".panelInformacion").show();
+		$(".panelInformacion .seleccion").children(".volver").on("click", function(){ $(".panelInformacion").hide(); });
+	}
+	else{
+		if(Organo == "test")
+		{
+			$("#pnlEmergente").fadeIn();
+			$( "#pnlIframe" ).attr("src", "resources/Quiz1/quiz.html");
+		}
+		
+		if(Organo == "continuar")
+			CambiarEscena("7primerTestBoca.html");
+	}
+});
+
+$( ".panelInformacion .seleccion .opciones").on("click", function(){
+	console.log($(this).attr("class").split(' ')[1]);
+	switch($(this).attr("class").split(' ')[1]){
+		case "btnSoloVideo":{
+			MostrarOrganoVideo();
+		};break;
+		case "btnVideoTexto":{
+			MostrarOrganoVideoTexto();
+		};break;
+	}
+	$(".panelInformacion .seleccion").hide();
+});
+
+function MostrarOrganoVideo(){
+	switch(Organo)
+	{
+		case "lengua":{
+			CargarVideo("//www.youtube.com/embed/SBRPrn-AmQ8");
+		}; break;
+		case "dientes":{
+			CargarVideo("//www.youtube.com/embed/T6vV9U3Argw");
+		}; break;
+		case "glandulas":{
+			CargarVideo("//www.youtube.com/embed/TWR2_G6boP8");
+		}; break;
+		case "paladar":{
+			CargarVideo("//www.youtube.com/embed/UA9mvbqD-WU");
+		}; break;
+	}
+}
+
+function MostrarOrganoVideoTexto(){
+	switch(Organo)
+	{
+		case "lengua":{
+			CargarVideoTexto('//www.youtube.com/embed/2cqGX2Bc1F4', $("#textoLengua").html());
+		}; break;
+		case "dientes":{
+			CargarVideoTexto('//www.youtube.com/embed/pd00uzOHLoU', $("#textoDientes").html());
+		}; break;
+		case "glandulas":{
+			CargarVideoTexto('//www.youtube.com/embed/TWR2_G6boP8', $("#textoGlandulas").html());
+		}; break;
+		case "paladar":{
+			CargarVideoTexto('//www.youtube.com/embed/UA9mvbqD-WU', $("#textoPaladar").html());
+		}; break;
+	}
+}
+
+function CargarVideo(ruta){
+	$(".soloVideo").html('<iframe width="90%" height="90%" src="' + ruta + '" frameborder="0" allowfullscreen></iframe>');
+	$(".soloVideo").append('<div class="volver">Volver</div>');
+	$(".soloVideo").parent().show();
+	$(".soloVideo").show();
+
+	$(".soloVideo").find( ".volver").on("click", function(){ MostrarSeleccion(".soloVideo"); });
+}
+
+function CargarVideoTexto(ruta, div){
+	console.log(ruta);
+	console.log(div);
+	$(".VideoTexto").find(".video").html('<iframe width="100%" height="100%" src="' + ruta + '" frameborder="0" allowfullscreen></iframe>');
+	$(".VideoTexto").find(".texto").html(div);
+	$(".VideoTexto").append('<div class="volver">Volver</div>');
+	$(".VideoTexto").parent().show();
+	$(".VideoTexto").show();
+
+	$(".VideoTexto").find( ".volver").on("click", function(){ 
+		$(this).remove();
+		MostrarSeleccion(".VideoTexto"); 
+	});
+}
+
+function MostrarSeleccion(panel){
+	$(".panelInformacion .seleccion").show();
+	$(panel).hide();
+	$(panel).parent().hide();
+}
+
+</script>
+
+<div class="contenidoCapitulo">
+
+	<h3 class="titulo">Boca</h3>
+
+	<div class="boca"></div>
+
+	<div class="botones">
+		<div class="boton" id="lengua">Lengua</div>
+		<div class="boton" id="dientes">Dientes</div>
+		<div class="boton" id="glandulas">Glandulas salivales</div>
+		<div class="boton" id="paladar">Paladar</div>
+		<div class="boton" id="continuar">Continuar</div>
+	</div>
+
+	<div class="panelInformacion">
+		<div class="seleccion">
+			<div class="opciones btnSoloVideo">Solo Video</div>
+			<div class="opciones btnVideoTexto">Texto y video</div>
+			<div class="volver">Volver</div>
+		</div>
+		<div class="soloVideo"></div>
+		<div class="VideoTexto">
+			<div class='video'></div>
+			<div class='texto'></div>
+		</div>
+	</div>
+</div>
+
+<div class="texto" id="textoLengua">
+
+<h4>Lengua</h4>
+<p>La lengua tiene forma de cono, presenta un cuerpo, una V lingual una raíz y un hueso llamado hioides. El cuerpo o porción bucal comprende los 2/3 anteriores, la raíz o porción faríngea, el 1/3 posterior, separados ambos por la V lingual o istmo de las fauces. Las partes de la lengua son:</p>
+<ul>
+<li>Cara superior: También se llama dorso de la lengua, que presenta la V lingual, abierta hacia delante, formada por las papilas circunvaladas o caliciformes. La superficie del dorso de la lengua por delante de la V lingual, está en relación con el paladar, suele ser lisa y poseer unos surcos congénitos y otros adquiridos que diferencian las lenguas de los individuos. </li>
+<li>Cara inferior: Descansa en el suelo de la boca. En la línea media se encuentra el frenillo o filete lingual, de forma semilunar, muy resistente que limita los movimientos de la lengua. De no ser por este frenillo, podríamos incluso morir tragándonos la lengua, de allí su gran importancia. A ambos lados del frenillo de la lengua, en su parte más anterior, aparecen orificios de salida de las glándulas salivales submandibulares. </li>
+<li>Bordes linguales: Son libres, redondeados y en relación con los arcos dentarios e importantes.También cuentan con filtradores de bacterias</li>
+<li>Base de la lengua: Es gruesa y ancha y está en relación de adelante hacia atrás con los músculos milohioideos y genihioideos, con el hueso hioides y con la epiglotis.</li>
+<li>Punta lingual: También se le llama vértice lingual. Sirve para degustar los alimentos mediante la masticación.</li>
+<li>Mucosa de la lengua: La mucosa que reviste el dorso del cuerpo es una mucosa especializada. La mucosa que está detrás de la V lingual constituye la amígdala lingual. La mucosa del dorso lingual presenta seis tipos de papilas gustativas (tal y como se observan en la lengua de arriba hacia abajo):</li>
+<li>Papilas caliciformes o circunvaladas.</li>
+<li>Papilas foliadas.</li>
+<li>Papilas filiformes.</li>
+<li>Fungiformes.</li>
+</ul>
+
+</div>
+
+<div class="texto" id="textoDientes">
+
+<h4>Tipos de dientes</h4>
+Estos son los generalmente denominados dientes que, en los humanos, se dividen en cuatro grupos o familias: incisivos, caninos, premolares y molares o muelas.<br>
+1.	Incisivos (8 piezas): dientes anteriores con borde afilado. Cortan los alimentos<br>
+2.	Caninos (4 piezas): con forma de cúspide puntiaguda. también llamados colmillos. Desgarran los alimentos<br>
+3.	Premolares (8 piezas): poseen dos cúspides puntiagudas, por lo que también se conocen por el término bicúspides. Desgarran y aplastan los alimentos<br>
+4.	Molares (12 piezas): cúspides anchas. Trituran los alimentos<br>
+<h4>Incisivos</h4>
+<p>Los incisivos son parte de los dientes anteriores y se dividen en 2 tipos: incisivos centrales e incisivos laterales que pueden localizarse en los alveolos dentarios del maxilar superior e inferior.</p>
+<p>El diente incisivo tiene un papel muy importante en la estética dental del individuo. Tiene una corona trapezoidal, posee una única raíz y tiene una dimensión vestibulolingual mayor que la mesio distal. Es el incisivo más grande de todos y su longitud inciso cervical de la corona es la mayor de toda la dentición humana.</p>
+<p>Su función en la masticación es fundamental por su función cortante.</p>
+<p>Al unirse el borde incisal con las caras proximales forma dos ángulos, uno mesioincisal, en un plano más inferior y con un vértice más marcado (ángulo de 90º), y el otro, distoincisal, en un plano más superior y redondeado.</p>
+<h4>Caninos</h4>
+<p>Los dientes caninos o familiarmente colmillos son denominados así porque se parecen a los de los perros o canes: están situados entre ambas arcadas dentarias delimitando el sector anterior del posterior. Se sitúan distalmente a los primeros premolares y mesialmente a los incisivos laterales. Existen dos caninos superiores y dos inferiores.</p>
+<p>Su función es la de desgarrar lateralmente los alimentos.</p>
+<h4>Premolares</h4>
+<p>Es cualquier diente que erupciona en el espacio dejado por un molar temporal o deciduo. Hay en total 8 premolares, 4 en la mandíbula y 4 en el maxilar, dos a cada lado respectivamente. Están situados por distal respecto del canino, de forma que el primer premolar está distal al canino, y distal al primer premolar está el segundo premolar.</p>
+<p>Son los dientes que están inmediatamente antes de los molares. Su función en la masticación es la trituración fina. No están presentes en niños.</p>
+</h4><h4>Molares</h4>
+<p>Los dientes molares están situados en el fondo de la boca y tienen como función principal masticar y triturar los alimentos. El primer molar es el primero en erupcionar siendo ésta la piedra angular de la oclusión. El primer signo de calcificación de este diente puede producirse incluso antes del nacimiento, el esmalte completo tardará de 3 a 4 años en completarse, brotará alrededor de los 6 años pero la raíz no estará completamente formada hasta los 9 o 10 años. Su función en la masticación es la trituración gruesa.</p>
+
+</div>
+
+<div class="texto" id="textoGlandulas">
+
+<h4>Glandulas</h4>
+<p>Las glándulas salivales en diversas especies biológicas son glándulas exocrinas en el sistema digestivo superior que producen la saliva que vierten en la cavidad oral. La saliva es un líquido incoloro de consistencia acuosa o mucosa, que contiene proteínas, glucoproteínas, hidratos de carbono y electrólitos, células epiteliales descamadas y leucocitos. Su función, entre otras, es iniciar la digestión de los alimentos al humedecerlos para ayudar en el proceso de masticación y deglución, y contiene enzimas que comienzan el proceso de digestión de carbohidratos y grasas.</p>
+
+</div>
+
+<div class="texto" id="textoPaladar">
+
+<h4>Paladar</h4>
+Está compuesto de dos partes:
+</br>
+<ul>
+<li>El Paladar duro ubicado en la parte anterior del techo de la boca, formado por los huesos del maxilar superior y palatino.</li>
+<li>Paladar blando forma la parte posterior del techo de la boca.</li>
+</ul>
+<p>Prendido del borde libre del paladar blando está la úvula, que al momento de la deglución, junto con el paladar blando se elevan y ocluyen la nasofaringe, lo cual evita que los alimentos y los líquidos ingresen a través de la cavidad nasal.</p>
+
+</div>

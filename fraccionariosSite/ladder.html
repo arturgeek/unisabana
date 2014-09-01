@@ -1,0 +1,554 @@
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/escena7/fondo.png');
+}
+
+.marco
+{
+	background-image: url('images/escena7/marco.png');
+	height: 100%;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+}
+
+.titulo
+{
+	background-image: url('images/escena7/titulo.png');
+	height: 119px;
+	position: absolute;
+	left: 20px;
+	top: 28px;
+	width: 829px;
+}
+
+.guia
+{
+	background-image: url('images/escena7/guia.png');
+	height: 120px;
+	position: absolute;
+	right: 75px;
+	top: 25px;
+	width: 121px;
+}
+
+.bear
+{
+	background-image: url('images/osa_quieta.png');
+	bottom: 20px;
+	height: 255px;
+	position: absolute;
+	right: 50px;	
+	width: 166px;
+}
+
+#btnContinuar
+{
+	background-image: url('images/escena7/bt_contimuar.png');
+	bottom: 35px;
+	cursor: pointer;
+	height: 44px;
+	left: 75px;
+	position: absolute;
+	width: 514px;
+}
+
+.blackboard
+{
+	left: 30px;
+	display: none;
+	top: 115px;
+}
+
+.blackboard .table
+{
+	background: #ffd091;
+	height: 100%;
+	left: 0px;
+	margin: 0;
+	top: 0px;
+	width: 100%;
+}
+
+.blackboard .table .completo
+{
+	height: auto;
+	margin: 20% auto;
+	width: 300px;
+}
+
+.blackboard .table .completo h3
+{
+	text-align: center;
+}
+
+.blackboard .table .completo span
+{
+	-webkit-box-shadow: inset 0px 0px 4px #000;
+	box-shadow: inset 0px 0px 4px #000;
+
+	height: 40px;
+	display: inline-block;
+}
+
+.ejercicio1
+{
+	background-image: url('images/escena7/ejer1.png');
+	background-repeat: no-repeat;
+	color: white;
+	height: 100%;
+	width: 100%;
+}
+
+.ejercicio1 .items
+{
+	height: 100px;
+	position: absolute;
+	right: 10px;
+	text-align: center;
+	top: 100px;
+	width: 250px;	
+}
+
+.ejercicio1 .items .item
+{
+	background-image: url('images/escena7/esfera.png');
+	border-radius: 100%;
+	display: inline-block;
+	height: 24px;
+	margin: 5px;
+	width: 24px;
+}
+
+.ejercicio1 .indicador
+{
+	bottom: 8px;
+	color: black;
+	font-size: 20px;
+	height: 35px;
+	line-height: 35px;
+	left: 124px;
+	position: absolute;
+	text-align: center;
+	width: 35px;
+}
+
+.ejercicio1 .box
+{
+	bottom: 81px;
+	height: 107px;
+	line-height: 100px;
+	position: absolute;
+	text-align: center;
+	width: 86px;
+}
+
+.ejercicio1 .type1
+{
+	left: 97px;
+}
+
+.ejercicio1 .type1 .item
+{
+	background-image: url('images/escena7/esfera.png');
+	border-radius: 100%;
+	display: inline-block;
+	height: 24px;
+	margin: 0px;
+	width: 24px;
+}
+
+.ejercicio1 .type2
+{
+	left: 218px;
+}
+
+.ejercicio2
+{
+	background-image: url('images/escena7/ejer2.png');
+	background-repeat: no-repeat;
+	color: white;
+	height: 100%;
+	width: 100%;
+}
+
+.ejercicio2 .items
+{
+	height: 100px;
+	position: absolute;
+	right: 157px;
+	text-align: center;
+	top: 100px;
+	width: 144px;
+}
+
+.ejercicio2 .items .item
+{
+	background-image: url('images/escena7/esfera.png');
+	border-radius: 100%;
+	display: inline-block;
+	height: 24px;
+	margin: 0px;
+	width: 24px;
+}
+
+.ejercicio2 .indicador
+{
+	bottom: 15px;
+	color: black;
+	font-size: 20px;
+	height: 35px;
+	line-height: 35px;
+	left: 192px;
+	position: absolute;
+	text-align: center;
+	width: 35px;
+}
+
+.ejercicio2 .box
+{
+	bottom: 94px;
+	height: 110px;
+	line-height: 100px;
+	position: absolute;
+	text-align: center;
+	width: 88px;
+}
+
+.ejercicio2 .type1
+{
+	left: 8px;
+}
+
+.ejercicio2 .type2
+{
+	left: 120px;
+}
+
+.ejercicio2 .type3
+{
+	left: 230px;
+}
+
+.ejercicio2 .box .item
+{
+	background-image: url('images/escena7/esfera.png');
+	border-radius: 100%;
+	display: inline-block;
+	height: 24px;
+	margin: 0px;
+	width: 24px;
+}
+
+.ejercicio2 .puntosTotales
+{
+	color: black;
+	cursor: pointer;
+	font-size: 20px;
+	position: absolute;
+	right: 90px;
+	top: 150px;
+}
+
+.ejercicio3
+{
+	background-image: url('images/escena7/ejer3.png');
+	background-repeat: no-repeat;
+	color: white;
+	height: 100%;
+	width: 100%;
+}
+
+.ejercicio3 .items
+{
+	height: 100px;
+	position: absolute;
+	right: 157px;
+	text-align: center;
+	top: 100px;
+	width: 144px;
+}
+
+.ejercicio3 .items .item
+{
+	background-image: url('images/escena7/esfera.png');
+	border-radius: 100%;
+	display: inline-block;
+	height: 24px;
+	margin: 0px;
+	width: 24px;
+}
+
+.ejercicio3 .indicador
+{
+	bottom: 22px;
+	color: black;
+	font-size: 20px;
+	height: 35px;
+	line-height: 35px;
+	left: 125px;
+	position: absolute;
+	text-align: center;
+	width: 35px;
+}
+
+.ejercicio3 .box
+{
+	bottom: 101px;
+	height: 110px;
+	line-height: 100px;
+	position: absolute;
+	text-align: center;
+	width: 88px;
+}
+
+.ejercicio3 .box .item
+{
+	background-image: url('images/escena7/esfera.png');
+	border-radius: 100%;
+	display: inline-block;
+	height: 24px;
+	margin: 0px;
+	width: 24px;
+}
+
+.ejercicio3 .type1
+{
+	left: 8px;
+}
+
+.ejercicio3 .type2
+{
+	left: 100px;
+}
+
+.ejercicio3 .type3
+{
+	left: 192px;
+}
+
+.ejercicio3 .puntosTotales
+{
+	color: black;
+	cursor: pointer;
+	font-size: 20px;
+	position: absolute;
+	right: 85px;
+	top: 140px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#contenedor").css("background-image", "url('images/escena7/fondo.png')"); 
+
+	$("#audio0").trigger("play");
+	$(".bear").css("background-image", "url('images/osa_habla.gif')");
+
+	$(".audio").on('ended', function() {
+		$(".bear").css("background-image", "url('images/osa_quieta.png')");
+	});
+});
+
+var aciertos = 0;
+
+$(".bear").on("click", function(){
+	Continuar();
+});
+
+$("#btnContinuar").on("click", function(){
+	Continuar();
+});
+
+function Continuar()
+{
+	$(".blackboard").fadeIn();
+	switch($("#btnContinuar").attr("class"))
+	{
+		case "etapa0":{
+			$("#btnContinuar").attr("class", "etapa1");
+			$(".blackboard").find(".table").html("<img src='images/escena7/explicacion.gif' />");
+
+			$("#audio0").trigger("pause");
+			$("#audio1").trigger("play");
+			$(".bear").css("background-image", "url('images/osa_habla.gif')");
+		};break;
+
+		case "etapa1":{
+			$("#audio1").trigger("pause");
+			$(".bear").css("background-image", "url('images/osa_quieta.png')");
+
+			aciertos = 0;
+
+			$("#btnContinuar").attr("class", "etapa2");
+			
+			$(".blackboard").find(".table").html("<div class='ejercicio1'></div>");
+			$(".blackboard").find(".table").find(".ejercicio1").append("<div class='items'></div>");
+
+			for(var i = 0; i < 16 ; i++){
+				$(".blackboard").find(".table").find(".ejercicio1").find(".items").append("<span class='item'></span>");
+				$(".blackboard").find(".table").find(".ejercicio1").find(".items").children(".item").last().draggable({ revert: "invalid" });
+			}
+			
+			$(".blackboard").find(".table").find(".ejercicio1").append("<div class='box type1 drop'></div>");
+			$(".blackboard").find(".table").find(".ejercicio1").append("<div class='box type2'></div>");
+			$(".blackboard").find(".table").find(".ejercicio1").append("<div class='indicador'></div>");
+
+			$(".blackboard").find(".table").find(".ejercicio1").children(".drop").each(function(index, box){
+				var thisBox = $(this);
+				$(thisBox).droppable({
+				    drop: function( event, ui ) {
+				    	$(thisBox).append("<span class='item'></span>");
+
+				    	$(ui.draggable).fadeOut();
+				    	aciertos++;
+				    	$(".ejercicio1 .indicador").html(aciertos);
+				    	if(aciertos == 8){
+				    		setTimeout(function() { 
+				    			Continuar();
+				    		},1000)
+				    	}
+					}
+				});
+			});
+
+		};break;
+
+		case "etapa2":{
+			
+			aciertos = 0;
+			
+			$(".blackboard").find(".table").html("<div class='ejercicio2'></div>");
+			$(".blackboard").find(".table").find(".ejercicio2").append("<div class='items'></div>");
+
+			for(var i = 0; i < 18 ; i++){
+				$(".blackboard").find(".table").find(".ejercicio2").find(".items").append("<span class='item'></span>");
+				$(".blackboard").find(".table").find(".ejercicio2").find(".items").children(".item").last().draggable({ revert: "invalid" });
+			}
+
+			$(".blackboard").find(".table").find(".ejercicio2").append("<div class='puntosTotales'>" + ReturnPoints() + "</div>");
+			
+			$(".blackboard").find(".table").find(".ejercicio2").append("<div class='box type1'></div>");
+			$(".blackboard").find(".table").find(".ejercicio2").append("<div class='box type2 drop'></div>");
+			$(".blackboard").find(".table").find(".ejercicio2").append("<div class='box type3 drop'></div>");
+			$(".blackboard").find(".table").find(".ejercicio2").append("<div class='indicador'></div>");
+
+			$(".blackboard").find(".table").find(".ejercicio2").children(".drop").each(function(index, box){
+				var thisBox = $(this);
+				$(thisBox).droppable({
+				    drop: function( event, ui ) {
+				    	$(thisBox).append("<span class='item'></span>");
+
+				    	$(ui.draggable).fadeOut();
+				    	aciertos++;
+				    	$(".ejercicio2 .indicador").html(aciertos);
+				    	if(aciertos == 12){
+				    		if($(".blackboard .table .ejercicio2 .type2").children(".item").length == $(".blackboard .table .ejercicio2 .type3").children(".item").length)
+				    		{
+				    			$("#btnContinuar").attr("class", "etapa3");
+				    			AddPoints();
+				    		}
+				    		else
+				    		{
+				    			alert("No son las mismas cantidades, vuelve a intentarlo.");
+				    		}
+
+				    		setTimeout(function() { 
+				    			Continuar();
+				    		},1000);
+				    	}
+					}
+				});
+			});
+
+		};break;
+
+		case "etapa3":{
+			
+			aciertos = 0;
+			
+			$(".blackboard").find(".table").html("<div class='ejercicio3'></div>");
+			$(".blackboard").find(".table").find(".ejercicio3").append("<div class='items'></div>");
+
+			for(var i = 0; i < 12 ; i++){
+				$(".blackboard").find(".table").find(".ejercicio3").find(".items").append("<span class='item'></span>");
+				$(".blackboard").find(".table").find(".ejercicio3").find(".items").children(".item").last().draggable({ revert: "invalid" });
+			}
+
+			$(".blackboard").find(".table").find(".ejercicio3").append("<div class='puntosTotales'>" + ReturnPoints() + "</div>");
+			
+			$(".blackboard").find(".table").find(".ejercicio3").append("<div class='box type1 drop'></div>");
+			$(".blackboard").find(".table").find(".ejercicio3").append("<div class='box type2 drop'></div>");
+			$(".blackboard").find(".table").find(".ejercicio3").append("<div class='box type3 drop'></div>");
+			$(".blackboard").find(".table").find(".ejercicio3").append("<div class='indicador'></div>");
+
+			$(".blackboard").find(".table").find(".ejercicio3").children(".drop").each(function(index, box){
+
+				var thisBox = $(this);
+				$(thisBox).droppable({
+				    drop: function( event, ui ) {
+				    	$(thisBox).append("<span class='item'></span>");
+
+				    	$(ui.draggable).fadeOut();
+				    	aciertos++;
+				    	$(".ejercicio3 .indicador").html(aciertos);
+				    	if(aciertos == 9){
+
+				    		if($(".blackboard .table .ejercicio3 .type1").children(".item").length == $(".blackboard .table .ejercicio3 .type2").children(".item").length &&
+				    			 $(".blackboard .table .ejercicio3 .type1").children(".item").length == $(".blackboard .table .ejercicio3 .type2").children(".item").length)
+				    		{
+				    			$("#btnContinuar").attr("class", "etapa4");
+				    			AddPoints();
+				    		}
+				    		else
+				    		{
+				    			alert("No son las mismas cantidades, vuelve a intentarlo.");
+				    		}
+
+				    		setTimeout(function() { 
+				    			Continuar();
+				    		},1000);
+				    	}
+					}
+				});
+			});
+
+		};break;
+
+		case "etapa4":{
+
+			menuWorld = 6;
+			$( "#contenedor" ).load("menuWorld.html");
+
+		}; break;
+	}
+}
+
+function ValidarRespuestas(){
+	aciertos++;
+	if(aciertos >= 6){
+		menuWorld = 4;
+		$( "#contenedor" ).load("menuWorld.html");
+	}
+}
+
+</script>
+Dar click sobre el personaje para poder continuar
+<div class="marco"></div>
+<div class="titulo"></div>
+<div class="guia"> </div>
+<div class="bear"></div>
+<div class="blackboard"><div class="table"></div></div>
+
+<div id="propiasBox"></div>
+<div id="impropiasBox"></div>
+<div id="mixtasBox"></div>
+
+<div id="btnContinuar" class='etapa0'></div>
+<audio class='audio' id='audio0'><source src="images/escena7/ladera.mp3" type="audio/mpeg"></audio>
+<audio class='audio' id='audio1'><source src="images/escena7/reparte_esferas.mp3" type="audio/mpeg"></audio>

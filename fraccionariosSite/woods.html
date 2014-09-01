@@ -1,0 +1,348 @@
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/escena6/fondo.png');
+}
+
+.marco
+{
+	background-image: url('images/escena6/marco.png');
+	height: 100%;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+}
+
+.titulo
+{
+	background-image: url('images/escena6/titulo.png');
+	height: 119px;
+	position: absolute;
+	left: 20px;
+	top: 28px;
+	width: 829px;
+}
+
+.guia
+{
+	background-image: url('images/escena6/guia.png');
+	height: 120px;
+	position: absolute;
+	right: 75px;
+	top: 25px;
+	width: 121px;
+}
+
+.bear
+{
+	background-image: url('images/osa_quieta.png');
+	bottom: 20px;
+	height: 255px;
+	position: absolute;
+	right: 50px;	
+	width: 166px;
+}
+
+#btnContinuar
+{
+	background-image: url('images/escena6/bt_contimuar.png');
+	bottom: 35px;
+	cursor: pointer;
+	height: 44px;
+	left: 75px;
+	position: absolute;
+	width: 514px;
+}
+
+.blackboard
+{
+	left: 30px;
+	display: none;
+	top: 115px;
+}
+
+.blackboard .table
+{
+	background: #ffd091;
+	height: 100%;
+	left: 0px;
+	margin: 0;
+	top: 0px;
+	width: 100%;
+}
+
+.blackboard .table .completo
+{
+	height: auto;
+	margin: 20% auto;
+	width: 300px;
+}
+
+.blackboard .table .completo h3
+{
+	text-align: center;
+}
+
+.blackboard .table .completo span
+{
+	-webkit-box-shadow: inset 0px 0px 4px #000;
+	box-shadow: inset 0px 0px 4px #000;
+
+	height: 40px;
+	display: inline-block;
+}
+
+.blackboard .table .ejercicio1,
+.blackboard .table .ejercicio2,
+.blackboard .table .ejercicio3
+{
+	left: 10px;	
+	position: absolute;
+	top: 10px;
+}
+
+.blackboard .table .ejercicio1 input,
+.blackboard .table .ejercicio2 input,
+.blackboard .table .ejercicio3 input
+{
+	background: rgba(0,0,0,0);
+	border: none;
+	position: absolute;
+	text-align: center;
+	width: 44px;
+}
+
+.blackboard .table .ejercicio1
+{
+	background-image: url('images/escena6/ejercicio1.png');
+	height: 381px;
+	width: 515px;
+}
+
+.blackboard .table .ejercicio1 .opcion1
+{
+	left: 269px;
+	top: 97px;
+}
+
+.blackboard .table .ejercicio1 .opcion2
+{
+	left: 269px;
+	top: 132px;
+}
+
+.blackboard .table .ejercicio1 .opcion3
+{
+	left: 269px;
+	top: 211px;
+}
+
+.blackboard .table .ejercicio1 .opcion4
+{
+	left: 269px;
+	top: 246px;
+}
+
+.blackboard .table .ejercicio2
+{
+	background-image: url('images/escena6/ejercicio2.png');
+	height: 381px;
+	width: 515px;
+}
+
+.blackboard .table .ejercicio2 .opcion1
+{
+	left: 269px;
+	top: 211px;
+}
+
+.blackboard .table .ejercicio2 .opcion2
+{
+	left: 269px;
+	top: 246px;
+}
+
+.blackboard .table .ejercicio3
+{
+	background-image: url('images/escena6/ejercicio3.png');
+	height: 381px;
+	width: 515px;
+}
+
+.blackboard .table .ejercicio3 .opcion1
+{
+	left: 291px;
+	top: 282px;
+}
+
+.blackboard .table .ejercicio3 .opcion2
+{
+	left: 292px;
+	top: 317px;
+}
+
+.blackboard .table .ejercicio3 .opcion3
+{
+	left: 425px;
+	top: 282px;
+}
+
+.blackboard .table .ejercicio3 .opcion4
+{
+	left: 425px;
+	top: 317px;
+}
+
+.puntosObtenidos
+{
+	bottom: 70px;
+	left: 146px;
+	position: absolute;
+}
+
+.puntosTotales
+{
+	position: absolute;
+	bottom: 28px;
+	left: 147px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#contenedor").css("background-image", "url('images/escena6/fondo.png')");
+
+	$("#audio0").trigger("play");
+	$(".bear").css("background-image", "url('images/osa_habla.gif')");
+
+	$(".audio").on('ended', function() {
+		$(".bear").css("background-image", "url('images/osa_quieta.png')");
+	});
+});
+
+var contador = "";
+
+$(".bear").on("click", function(){
+	Continuar();
+});
+
+$("#btnContinuar").on("click", function(){
+	Continuar();
+});
+
+function Continuar()
+{
+	switch($("#btnContinuar").attr("class"))
+	{
+		case "etapa0":{
+			$("#btnContinuar").attr("class", "etapa1");
+			$(".blackboard").fadeIn();
+
+			var ejercicio = Array();
+			ejercicio.push("<div class='ejercicio1'>");
+			ejercicio.push("<input type='text' class='opcion1' />");
+			ejercicio.push("<input type='text' class='opcion2' />");
+			ejercicio.push("<input type='text' class='opcion3' />");
+			ejercicio.push("<input type='text' class='opcion4' />");
+			ejercicio.push("</div>");
+
+			$(".blackboard").find(".table").html(ejercicio.join(""));
+			SetPoints(0);
+		};break;
+
+		case "etapa1":{
+
+			if(ValidarRespuesta(1)){
+
+				$("#btnContinuar").attr("class", "etapa2");
+
+				var ejercicio = Array();
+				ejercicio.push("<div class='ejercicio2'>");
+				ejercicio.push("<input type='text' class='opcion1' />");
+				ejercicio.push("<input type='text' class='opcion2' />");
+				ejercicio.push("</div>");
+
+				$(".blackboard").find(".table").html(ejercicio.join(""));
+				SetPoints(1);
+			}
+		};break;
+		case "etapa2":{
+
+			if(ValidarRespuesta(2)){
+
+				$("#btnContinuar").attr("class", "etapa3");
+
+				var ejercicio = Array();
+				ejercicio.push("<div class='ejercicio3'>");
+				ejercicio.push("<input type='text' class='opcion1' />");
+				ejercicio.push("<input type='text' class='opcion2' />");
+				ejercicio.push("<input type='text' class='opcion3' />");
+				ejercicio.push("<input type='text' class='opcion4' />");
+				ejercicio.push("</div>");
+
+				$(".blackboard").find(".table").html(ejercicio.join(""));
+				SetPoints(1);
+			}
+		};break;
+		case "etapa3":{
+			if(ValidarRespuesta(3)){
+				menuWorld = 5;
+				$( "#contenedor" ).load("menuWorld.html");
+			}
+		};break;
+	}
+}
+
+function ValidarRespuesta(etapa){
+
+	var respuestaOk = true;
+	switch(etapa){
+		case 1:{
+			respuestaOk = $(".opcion1").val() != "1" ? false : respuestaOk;
+			respuestaOk = $(".opcion2").val() != "4" ? false : respuestaOk;
+			respuestaOk = $(".opcion3").val() != "3" ? false : respuestaOk;
+			respuestaOk = $(".opcion4").val() != "4" ? false : respuestaOk;
+		}; break;
+		case 2:{
+			respuestaOk = $(".opcion1").val() != "1" ? false : respuestaOk;
+			respuestaOk = $(".opcion2").val() != "8" ? false : respuestaOk;
+		}; break;
+		case 3:{
+			respuestaOk = $(".opcion1").val() != "13" ? false : respuestaOk;
+			respuestaOk = $(".opcion2").val() != "16" ? false : respuestaOk;
+			respuestaOk = $(".opcion3").val() != "3" ? false : respuestaOk;
+			respuestaOk = $(".opcion4").val() != "16" ? false : respuestaOk;
+		}; break;
+	}
+
+	if(respuestaOk)
+	{
+		alert("Muy bien");
+		AddPoints();
+	}
+	else
+	{
+		alert("Incorrecto, intenta de nuevo.");
+	}
+
+	return respuestaOk;
+}
+
+function SetPoints(puntosObtenidos)
+{
+	$(".blackboard").find(".table").append("<div class='puntosObtenidos'>" + puntosObtenidos + "</div>");
+	$(".blackboard").find(".table").append("<div class='puntosTotales'>" + ReturnPoints() + "</div>");
+}
+
+</script>
+<div class="marco"></div>
+<div class="titulo"></div>
+<div class="guia"> </div>
+<div class="bear"></div>
+<div class="blackboard"><div class="table"></div></div>
+<div id="btnContinuar" class="etapa0"></div>
+<audio class='audio' id='audio0'><source src="images/escena6/bosque.mp3" type="audio/mpeg"></audio>

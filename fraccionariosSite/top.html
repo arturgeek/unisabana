@@ -1,0 +1,424 @@
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/escena8/fondo.png');
+}
+
+.marco
+{
+	background-image: url('images/escena8/marco.png');
+	height: 100%;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+}
+
+.titulo
+{
+	background-image: url('images/escena8/titulo.png');
+	height: 119px;
+	position: absolute;
+	left: 20px;
+	top: 28px;
+	width: 829px;
+}
+
+.guia
+{
+	background-image: url('images/escena8/guia.png');
+	height: 120px;
+	position: absolute;
+	right: 75px;
+	top: 25px;
+	width: 121px;
+}
+
+.bear
+{
+	background-image: url('images/osa_quieta.png');
+	bottom: 20px;
+	height: 255px;
+	position: absolute;
+	right: 50px;	
+	width: 166px;
+}
+
+#btnContinuar
+{
+	background-image: url('images/escena8/bt_contimuar.png');
+	bottom: 35px;
+	cursor: pointer;
+	height: 44px;
+	left: 75px;
+	position: absolute;
+	width: 514px;
+}
+
+.blackboard
+{
+	left: 40px;
+	top: 105px;
+}
+
+.blackboard .table
+{
+	background-image: url('images/escena8/contenido.png');
+	background: #ffd091;
+	height: 100%;
+	left: 0px;
+	margin: 0;
+	top: 0px;
+	width: 100%;
+}
+
+.ejercicio1,
+.ejercicio2,
+.ejercicio3,
+.ejercicio4,
+.ejercicio5
+{
+	background-repeat: no-repeat;	
+	height: 100%;
+	position: relative;
+	width: 100%;
+}
+
+.ejercicio1
+{
+	background-image: url('images/escena8/ejer1/ejer.png');
+}
+
+.ejercicio2
+{
+	background-image: url('images/escena8/ejer2/ejer.png');
+}
+
+.ejercicio3
+{
+	background-image: url('images/escena8/ejer3/ejer.png');
+}
+
+.ejercicio4
+{
+	background-image: url('images/escena8/ejer4/ejer.png');
+}
+
+.ejercicio5
+{
+	background-image: url('images/escena8/ejer5/ejer.png');
+}
+
+.btn
+{
+	cursor: pointer;
+}
+
+.btn1
+{
+	height: 70px;
+	position: absolute;
+	right: 160px;
+	top: 169px;
+	width: 70px;
+}
+
+.btn2
+{
+	height: 70px;
+	position: absolute;
+	right: 70px;
+	top: 169px;
+	width: 70px;
+}
+
+.btn3
+{
+	height: 70px;
+	position: absolute;
+	right: 160px;
+	top: 240px;
+	width: 70px;
+}
+
+.btn4
+{
+	height: 70px;
+	position: absolute;
+	right: 70px;
+	top: 240px;
+	width: 70px;
+}
+
+.ejercicio1 .btn1
+{
+	background-image: url('images/escena8/ejer1/bt_1.png');
+}
+
+.ejercicio1 .btn2
+{
+	background-image: url('images/escena8/ejer1/bt_2.png');
+}
+
+.ejercicio1 .btn3
+{
+	background-image: url('images/escena8/ejer1/bt_3.png');
+}
+
+.ejercicio1 .btn4
+{
+	background-image: url('images/escena8/ejer1/bt_4.png');
+}
+
+.ejercicio2 .btn1
+{
+	background-image: url('images/escena8/ejer2/bt_1.png');
+}
+
+.ejercicio2 .btn2
+{
+	background-image: url('images/escena8/ejer2/bt_2.png');
+}
+
+.ejercicio2 .btn3
+{
+	background-image: url('images/escena8/ejer2/bt_3.png');
+}
+
+.ejercicio2 .btn4
+{
+	background-image: url('images/escena8/ejer2/bt_4.png');
+}
+
+.ejercicio3 .btn1
+{
+	background-image: url('images/escena8/ejer3/bt_1.png');
+}
+
+.ejercicio3 .btn2
+{
+	background-image: url('images/escena8/ejer3/bt_2.png');
+}
+
+.ejercicio3 .btn3
+{
+	background-image: url('images/escena8/ejer3/bt_3.png');
+}
+
+.ejercicio3 .btn4
+{
+	background-image: url('images/escena8/ejer3/bt_4.png');
+}
+
+.ejercicio4 .btn1
+{
+	background-image: url('images/escena8/ejer4/bt_1.png');
+}
+
+.ejercicio4 .btn2
+{
+	background-image: url('images/escena8/ejer4/bt_2.png');
+}
+
+.ejercicio4 .btn3
+{
+	background-image: url('images/escena8/ejer4/bt_3.png');
+}
+
+.ejercicio4 .btn4
+{
+	background-image: url('images/escena8/ejer4/bt_4.png');
+}
+
+
+.ejercicio5 .btn1
+{
+	background-image: url('images/escena8/ejer5/bt_1.png');
+}
+
+.ejercicio5 .btn2
+{
+	background-image: url('images/escena8/ejer5/bt_2.png');
+}
+
+.ejercicio5 .btn3
+{
+	background-image: url('images/escena8/ejer5/bt_3.png');
+}
+
+.ejercicio5 .btn4
+{
+	background-image: url('images/escena8/ejer5/bt_4.png');
+}
+
+.puntosObtenidos
+{
+	bottom: 38px;
+	left: 128px;
+	position: absolute;
+}
+
+.puntosTotales
+{
+	bottom: 38px;
+	left: 350px;
+	position: absolute;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#contenedor").css("background-image", "url('images/escena8/fondo.png')");
+
+	$("#audio0").trigger("play");
+	$(".bear").css("background-image", "url('images/osa_habla.gif')");
+
+	$(".audio").on('ended', function() {
+		$(".bear").css("background-image", "url('images/osa_quieta.png')");
+	});
+});
+
+var contador = "";
+var primera = true;
+
+$(".bear").on("click", function(){
+	if(primera)
+	{
+		Continuar();
+		primera = false;
+	}
+});
+
+$("#btnContinuar").on("click", function(){
+	if(primera)
+	{
+		Continuar();
+		primera = false;
+	}
+});
+
+function Continuar()
+{
+	switch($("#btnContinuar").attr("class"))
+	{
+		case "etapa0":{
+			
+			$("#btnContinuar").attr("class", "etapa1");
+			$(".blackboard").fadeIn();
+			$(".blackboard").find(".table").html("<div class='ejercicio1'></div>");
+			$(".blackboard").find(".table").children(".ejercicio1").append("<div class='btn btn1'></div>");
+			$(".blackboard").find(".table").children(".ejercicio1").append("<div class='btn btn2 correcta'></div>");
+			$(".blackboard").find(".table").children(".ejercicio1").append("<div class='btn btn3'></div>");
+			$(".blackboard").find(".table").children(".ejercicio1").append("<div class='btn btn4'></div>");
+
+			SetPoints(0);
+
+			$(".blackboard").find(".table").children(".ejercicio1").children(".btn").on("click", function(){
+				ValidarRespuesta($(this));
+			});
+		};break;
+
+		case "etapa1":{
+			
+			$("#btnContinuar").attr("class", "etapa2");
+			$(".blackboard").fadeIn();
+			$(".blackboard").find(".table").html("<div class='ejercicio2'></div>");
+			$(".blackboard").find(".table").children(".ejercicio2").append("<div class='btn btn1 correcta'></div>");
+			$(".blackboard").find(".table").children(".ejercicio2").append("<div class='btn btn2'></div>");
+			$(".blackboard").find(".table").children(".ejercicio2").append("<div class='btn btn3'></div>");
+			$(".blackboard").find(".table").children(".ejercicio2").append("<div class='btn btn4'></div>");
+
+			$(".blackboard").find(".table").children(".ejercicio2").children(".btn").on("click", function(){
+				ValidarRespuesta($(this));
+			});
+
+		};break;
+
+		case "etapa2":{
+			
+			$("#btnContinuar").attr("class", "etapa3");
+			$(".blackboard").fadeIn();
+			$(".blackboard").find(".table").html("<div class='ejercicio3'></div>");
+			$(".blackboard").find(".table").children(".ejercicio3").append("<div class='btn btn1'></div>");
+			$(".blackboard").find(".table").children(".ejercicio3").append("<div class='btn btn2'></div>");
+			$(".blackboard").find(".table").children(".ejercicio3").append("<div class='btn btn3 correcta'></div>");
+			$(".blackboard").find(".table").children(".ejercicio3").append("<div class='btn btn4'></div>");
+
+			$(".blackboard").find(".table").children(".ejercicio3").children(".btn").on("click", function(){
+				ValidarRespuesta($(this));
+			});
+
+		};break;
+
+		case "etapa3":{
+			
+			$("#btnContinuar").attr("class", "etapa4");
+			$(".blackboard").fadeIn();
+			$(".blackboard").find(".table").html("<div class='ejercicio4'></div>");
+			$(".blackboard").find(".table").children(".ejercicio4").append("<div class='btn btn1'></div>");
+			$(".blackboard").find(".table").children(".ejercicio4").append("<div class='btn btn2 correcta'></div>");
+			$(".blackboard").find(".table").children(".ejercicio4").append("<div class='btn btn3'></div>");
+			$(".blackboard").find(".table").children(".ejercicio4").append("<div class='btn btn4'></div>");
+
+			$(".blackboard").find(".table").children(".ejercicio4").children(".btn").on("click", function(){
+				ValidarRespuesta($(this));
+			});
+
+		};break;
+
+		case "etapa4":{
+			
+			$("#btnContinuar").attr("class", "etapa5");
+			$(".blackboard").fadeIn();
+			$(".blackboard").find(".table").html("<div class='ejercicio5'></div>");
+			$(".blackboard").find(".table").children(".ejercicio5").append("<div class='btn btn1 correcta'></div>");
+			$(".blackboard").find(".table").children(".ejercicio5").append("<div class='btn btn2'></div>");
+			$(".blackboard").find(".table").children(".ejercicio5").append("<div class='btn btn3'></div>");
+			$(".blackboard").find(".table").children(".ejercicio5").append("<div class='btn btn4'></div>");
+
+			$(".blackboard").find(".table").children(".ejercicio5").children(".btn").on("click", function(){
+				ValidarRespuesta($(this));
+			});
+
+		};break;
+
+		case "etapa5":{
+			
+			SetCurrentWorld(7);
+			$( "#contenedor" ).load("finish.html");
+
+		};break;
+	}
+}
+
+function ValidarRespuesta(control)
+{
+	if($(control).hasClass("correcta"))
+	{
+		AddPoints();
+		Continuar();
+		SetPoints(1);
+	}
+	else
+	{
+		alert("Incorrecto, por favor intenta denuevo.");
+	}
+}
+
+function SetPoints(puntosObtenidos)
+{
+	$(".blackboard").find(".table").append("<div class='puntosObtenidos'>" + puntosObtenidos + "</div>");
+	$(".blackboard").find(".table").append("<div class='puntosTotales'>" + ReturnPoints() + "</div>");
+}
+
+</script>
+<div class="marco"></div>
+<div class="titulo"></div>
+<div class="guia"> </div>
+<div class="bear"></div>
+<div class="blackboard"><div class="table"></div></div>
+<div id="btnContinuar" class='etapa0'></div>
+<audio class='audio' id='audio0'><source src="images/escena8/cima.mp3" type="audio/mpeg"></audio>

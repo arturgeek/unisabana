@@ -1,0 +1,304 @@
+<style type="text/css">
+
+.contenidoCapitulo
+{
+	background: #71d2db;
+	font-family: 'Exo', sans-serif;
+	height: 100%;
+	padding: 20px;
+	text-align: center;
+	width: 100%;
+}
+
+.titulo{
+	background: #791e73;
+	background-clip: padding-box;
+	border: 2px solid white;
+	border-radius: 15px;
+	display: block;
+	font-size: 24px;
+	margin: 10px auto 30px;
+	padding: 10px;
+	text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+	width: 70%;
+}
+
+.boton
+{
+	background-clip: padding-box;
+	border: 1px solid black;
+	border-radius: 100%;
+	height: 50px;
+	width: 50px;
+}
+
+.panelJuego
+{
+	background-image: url("images/escena7/tablero.png");
+	height: 370px;
+	position: absolute;
+	right: 20px;
+	top: 100px;
+	width: 593px;
+}
+
+.panelJuego .masticar_btn
+{
+	background-image: url("images/escena7/bt_masticar.png");
+	cursor: pointer;
+	height: 32px;
+	position: absolute;
+	right: 20px;
+	top: 100px;
+	width: 158px;
+}
+
+.panelJuego .glandulas_btn
+{
+	background-image: url("images/escena7/bt_glandulas.png");
+	cursor: pointer;
+	height: 32px;
+	position: absolute;
+	right: 20px;
+	top: 135px;
+	width: 158px;
+}
+
+.panelJuego .paladar_btn
+{
+	background-image: url("images/escena7/bt_paladar.png");
+	cursor: pointer;
+	height: 32px;
+	position: absolute;
+	right: 20px;
+	top: 170px;
+	width: 158px;
+}
+
+.panelJuego .traquea_btn
+{
+	background-image: url("images/escena7/bt_traquea.png");
+	cursor: pointer;
+	height: 32px;
+	position: absolute;
+	right: 20px;
+	top: 205px;
+	width: 158px;
+}
+
+.panelJuego .lengua_btn
+{
+	background-image: url("images/escena7/bt_lengua.png");
+	cursor: pointer;
+	height: 32px;
+	position: absolute;
+	right: 20px;
+	top: 240px;
+	width: 158px;
+}
+
+.panelJuego .powerUp
+{
+	background-image: url("images/escena7/bt_power.png");
+	cursor: pointer;
+	bottom: 23px;
+	height: 32px;
+	position: absolute;
+	right: 190px;
+	width: 63px;
+}
+
+.panelJuego .pequeno
+{
+	background-image: url("images/escena7/bt_pedazospequenos.png");
+	cursor: pointer;
+	bottom: 23px;
+	height: 32px;
+	position: absolute;
+	right: 85px;
+	width: 102px;
+}
+
+.panelJuego .jugo
+{
+	background-image: url("images/escena7/bt_jugo.png");
+	cursor: pointer;
+	bottom: 23px;
+	height: 32px;
+	position: absolute;
+	right: 20px;
+	width: 63px;
+}
+
+.panelJuego .tutorial
+{
+	background-image: url("images/escena7/bt_tutorial.png");
+	cursor: pointer;
+	bottom: 23px;
+	height: 32px;
+	left: 23px;
+	position: absolute;
+	width: 68px;
+}
+
+.panelJuego .cabeza
+{
+	background-image: url("images/escena7/juego_fondo.png");
+	height: 263px;
+	left: 60px;
+	position: absolute;
+	top: 54px;
+	width: 309px;
+}
+
+.panelJuego .cabeza .mandibula
+{
+	background-image: url("images/escena7/juego_mandibula.png");
+	height: 109px;
+	left: 88px;
+	position: absolute;
+	top: 125px;
+	width: 161px;
+}
+
+.panelJuego .cabeza .masticar
+{
+	-webkit-animation: mastica 1s; /* Chrome, Safari, Opera */
+    animation: mastica 1s;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes mastica {
+    0% {
+    	transform:rotate(0deg);
+		-ms-transform:rotate(0deg); /* IE 9 */
+		-webkit-transform:rotate(0deg); /* Opera, Chrome, and Safari */
+    }
+    50% {
+    	transform:rotate(-8deg);
+		-ms-transform:rotate(-8deg); /* IE 9 */
+		-webkit-transform:rotate(-8deg); /* Opera, Chrome, and Safari */
+    }
+    90% {
+    	transform:rotate(0deg);
+		-ms-transform:rotate(0deg); /* IE 9 */
+		-webkit-transform:rotate(0deg); /* Opera, Chrome, and Safari */
+    }
+    100% {
+    	transform:rotate(0deg);
+		-ms-transform:rotate(0deg); /* IE 9 */
+		-webkit-transform:rotate(0deg); /* Opera, Chrome, and Safari */
+    }
+}
+
+/* Standard syntax */
+@keyframes mastica {
+    0% {
+    	transform:rotate(0deg);
+		-ms-transform:rotate(0deg); /* IE 9 */
+		-webkit-transform:rotate(0deg); /* Opera, Chrome, and Safari */
+    }
+    50% {
+    	transform:rotate(15deg);
+		-ms-transform:rotate(15deg); /* IE 9 */
+		-webkit-transform:rotate(15deg); /* Opera, Chrome, and Safari */
+    }
+    90% {
+    	transform:rotate(0deg);
+		-ms-transform:rotate(0deg); /* IE 9 */
+		-webkit-transform:rotate(0deg); /* Opera, Chrome, and Safari */
+    }
+    100% {
+    	transform:rotate(0deg);
+		-ms-transform:rotate(0deg); /* IE 9 */
+		-webkit-transform:rotate(0deg); /* Opera, Chrome, and Safari */
+    }
+}
+
+.panelJuego .cabeza .esofago
+{
+	background-image: url("images/escena7/juego_esofago.png");
+	height: 103px;
+	left: 118px;
+	position: absolute;
+	top: 147px;
+	width: 77px;
+}
+
+.panelJuego .cabeza .traquea
+{
+	background-image: url("images/escena7/juego_traquea.png");
+	height: 84px;
+	left: 131px;
+	position: absolute;
+	top: 169px;
+	width: 29px;
+}
+
+.panelJuego .cabeza .glandulas
+{
+	background-image: url("images/escena7/glandulas.png");
+	height: 27px;
+	left: 155px;
+	position: absolute;
+	top: 175px;
+	width: 30px;
+}
+
+.panelJuego .cabeza .paladar
+{
+	background-image: url("images/escena7/paladar.png");
+	height: 25px;
+	left: 124px;
+	position: absolute;
+	top: 150px;
+	width: 36px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(".button").on("click", function(){
+	CambiarEscena("8juegoMasticar.html");
+});
+
+$(".panelJuego .masticar_btn").on("click", function(){
+	$(".panelJuego .cabeza .mandibula").addClass("masticar");
+	setTimeout(function () {
+	    $(".panelJuego .cabeza .mandibula").removeClass('masticar');
+	}, 950);
+});
+
+
+
+</script>
+
+<div class='contenidoCapitulo'>
+
+	<h3 class="titulo">Juego de masticar</h3>
+	<div class="panelJuego">
+
+		<div class="masticar_btn"></div>
+		<div class="glandulas_btn"></div>
+		<div class="paladar_btn"></div>
+		<div class="traquea_btn"></div>
+		<div class="lengua_btn"></div>
+
+		<div class="powerUp"></div>
+		<div class="pequeno"></div>
+		<div class="jugo"></div>
+		<div class="tutorial"></div>
+
+		<div class="cabeza">
+			<div class="mandibula"></div>
+			<div class="esofago"></div>
+			<div class="traquea"></div>
+			<div class="glandulas"></div>
+			<div class="paladar"></div>
+		</div>
+
+	</div>
+	<div class='button'>Continuar</div>
+
+</div>

@@ -1,0 +1,125 @@
+<style type="text/css">
+
+.contenidoCapitulo
+{
+	background-image: url('images/escena3/fondo.png');
+	position: absolute;
+	height: 600px;
+	left: 0px;
+	padding: 0px;
+	top: 0px;
+	width: 800px;
+}
+
+.contenidoCapitulo .personaje
+{
+	background-image: url('images/escena3/pose5.png');
+	cursor: pointer;
+	height: 353px;
+	left: 85px;
+	position: absolute;
+	top: 165px;
+	width: 144px;
+}
+
+.contenidoCapitulo .texto
+{
+	bottom: 27px;
+	height: 40px;
+	line-height: 40px;
+	left: 140px;
+	overflow: hidden;
+	position: absolute;
+	width: 525px;
+}
+
+.contenidoCapitulo .texto .conversacion
+{
+	color: white;
+	font-family: Comic Sans, Comic Sans MS, cursive;
+	font-size: 16px;
+	line-height: 40px;
+	left: 0px;
+	position: absolute;
+	text-align: center;
+	top: 0px;
+	width: auto;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	setTimeout(function() { CambiarEscena("4testTipoAprendizaje.html"); },68000);
+
+});
+
+//"#audio1").trigger("play");
+
+$("#audio1").on('ended', function() {
+	$("#audio2").trigger("play");   
+});
+
+$("#audio2").on('ended', function() {
+	$("#audio3").trigger("play");   
+});
+
+$("#audio3").on('ended', function() {
+	$("#audio4").trigger("play");   
+});
+
+$("#audio4").on('ended', function() {
+	$("#audio5").trigger("play");   
+});
+
+$("#audio5").on('ended', function() {
+	$("#audio6").trigger("play");   
+});
+
+$("#audio6").on('ended', function() {
+	$("#audio6").trigger("play");
+	CambiarEscena("escena4.html");
+});
+
+</script>
+
+<div class='contenidoCapitulo'>
+	<!--
+	<div class='personaje'></div>
+	<div class='texto'>
+		<div class='conversacion'>
+			¡Hola de nuevo! ¿No doy de la impresión, sabes? Bueno, no es que no sepa del sistema digestivo, pero me pregunto sobre las funciones de cada órgano Escuché “Sistema digestivo”… ¿Qué quieres saber? ¡Profesor Méndez! ¡Es realmente bueno verlo! Así que estas mirando ésta radiografía… Creo que tienes problemas para darte cuenta de las funciones de algunos órganos importantes, ¿verdad? La verdad Profesor Mendez es que conozco algunos órganos, pero sobre las funciones, no lo tengo tan claro. ¿Ve a la persona fuera de la pantalla?  Tenemos las mismas dudas, así que necesitamos algunas respuestas  ¡Esto se puso Bueno! ¡Te prometí que te iba a ayudar, así que cumplo con mi palabra!  Así que, ¿Qué vamos a hacer? Antes de comenzar voy a hacer algunas preguntas a la personita que está en frente de la pantalla… si…  ¡Me refiero A TI! Porque TÚ tienes el control, pero antes ¡TE tengo que hacer algunas preguntas! Pero antes de las preguntas, creo que necesitamos estudiar algo de vocabulario.
+		</div>
+	</div>
+	<div class='subtitulo'></div>
+-->
+	<object type="application/x-shockwave-flash" data="swf/slide4.swf" LOOP="false" style="width:800px;height:600px;">
+		<param name="movie" value="swf/slide4.swf" />
+		<param name="allowfullscreen" value="true" />
+		<param name="allowscriptaccess" value="always" />
+		<param name="wmode" value="opaque" />
+		<param name="quality" value="high" />
+		<param name="menu" value="false" />
+		<param name="loop" value="false">
+	</object>
+</div>
+
+<audio id='audio1'><source src="audio/escena3/e1.mp3" type="audio/mpeg"></audio>
+<audio id='audio2'><source src="audio/escena3/e2.mp3" type="audio/mpeg"></audio>
+<audio id='audio3'><source src="audio/escena3/e3.mp3" type="audio/mpeg"></audio>
+<audio id='audio4'><source src="audio/escena3/e4.mp3" type="audio/mpeg"></audio>
+<audio id='audio5'><source src="audio/escena3/e5.mp3" type="audio/mpeg"></audio>
+<audio id='audio6'><source src="audio/escena3/e6.mp3" type="audio/mpeg"></audio>
+
+
+<script type="text/javascript">
+
+var alturaTotal = ($(".conversacion").height() + 40) * -1;
+
+$( ".conversacion" ).animate({
+    top: alturaTotal
+  }, 77000);
+
+</script>

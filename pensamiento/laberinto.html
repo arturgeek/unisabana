@@ -1,0 +1,312 @@
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/backgrounds/R7.png');
+}
+
+#mapa
+{
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	border-radius: 100%;
+	background-clip: padding-box;
+
+	background: white;
+	height: 400px;
+	left: 200px;
+	position: absolute;
+	top: 100px;
+	width: 400px;
+}
+
+#mapa .parte
+{
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+	box-shadow: inset 0px 0px 5px black, 0px 0px 5px white;
+	position: absolute;
+}
+
+#parte1
+{
+	border-radius: 100%;
+	background-clip: padding-box;
+	height: 400px;
+	left: 0px;
+	top: 0px;
+	width: 400px;
+}
+
+#parte2
+{
+	-webkit-transform: rotate(45deg); 
+	-ms-transform: rotate(45deg); 
+	transform: rotate(45deg); 
+
+	height: 200px;
+	left: 100px;
+	top: 100px;
+	width: 200px;
+}
+
+#parte3
+{
+	border-radius: 100%;
+	background-clip: padding-box;
+
+	height: 50px;
+	left: 75px;
+	top: 75px;
+	width: 50px;
+}
+
+#parte4
+{
+	border-radius: 100%;
+	background-clip: padding-box;
+
+	height: 50px;
+	right: 75px;
+	top: 75px;
+	width: 50px;
+}
+
+#parte5
+{
+	border-radius: 100%;
+	background-clip: padding-box;
+
+	bottom: 75px;
+	height: 50px;
+	left: 75px;
+	width: 50px;
+}
+
+#parte6
+{
+	border-radius: 100%;
+	background-clip: padding-box;
+
+	bottom: 75px;
+	height: 50px;
+	right: 75px;
+	width: 50px;
+}
+
+#parte7
+{
+	border-radius: 100%;
+	background-clip: padding-box;
+
+	height: 100px;
+	left: 150px;
+	top: 150px;
+	width: 100px;
+	z-index: 2;
+}
+
+.ficha
+{
+	background: black;
+	position: absolute;
+}
+
+#ficha2
+{
+	-webkit-transform: rotate(45deg); 
+	-ms-transform: rotate(45deg); 
+	transform: rotate(45deg); 
+
+	height: 200px;
+	left: -54px;
+	top: 327px;
+	width: 200px;
+}
+
+#ficha3
+{
+	border-radius: 100%;
+	background-clip: padding-box;
+
+	height: 50px;
+	left: 75px;
+	top: 75px;
+	width: 50px;
+}
+
+#ficha4
+{
+	border-radius: 100%;
+	background-clip: padding-box;
+
+	height: 50px;
+	left: 625px;
+	top: 191px;
+	width: 50px;
+}
+
+#ficha5
+{
+	border-radius: 100%;
+	background-clip: padding-box;
+
+	height: 50px;
+	left: 475px;
+	top: 500px;
+	width: 50px;
+}
+
+#ficha6
+{
+	border-radius: 100%;
+	background-clip: padding-box;
+
+	height: 50px;
+	left: 576px;
+	top: 79px;
+	width: 50px;
+}
+
+#ficha7
+{
+	border-radius: 100%;
+	background-clip: padding-box;
+
+	height: 100px;
+	left: 625px;
+	top: 276px;
+	width: 100px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+var draggedItem = null;
+var leftFicha = 0;
+var topFicha = 0;
+var conteoRespuesta = 0;
+
+$(document).ready(function(){
+	CrearContador("#contador", 120, TerminaContador);
+});
+
+$("#contenedor").bind('mousemove', function (e) {
+    if(draggedItem != null)
+    {
+    	$(draggedItem).offset({
+            left: e.pageX,
+            top: e.pageY
+        });
+    }
+});
+
+$(".ficha").bind("contextmenu",function(e){
+	leftFicha = $(this).css("left");
+	topFicha = $(this).css("top");
+	if(draggedItem == null)
+		draggedItem = this;
+});
+
+$("#contenedor").on("click", function(){
+	DropFicha();
+});
+
+$(".seteable").on("click", function(){
+	var partePosition = $(this).offset();
+	if(draggedItem != null && $(this).hasClass("seteable"))
+	{
+		switch($(draggedItem).attr("id").replace("ficha", ""))
+		{
+			case "2":
+			case "7":{
+				console.log("1");
+				if($(draggedItem).attr("id").replace("ficha", "") == $(this).attr("id").replace("parte", ""))
+					SetPartePintable(partePosition, this);
+				else
+					DropFicha();
+			}; break;
+			case "3":
+			case "4":
+			case "5":
+			case "6":{
+				console.log($(this).attr("id").replace("parte", ""));
+				switch($(this).attr("id").replace("parte", ""))
+				{
+					case "3":
+					case "4":
+					case "5":
+					case "6":{
+						SetPartePintable(partePosition, this);
+					}; break;
+					default:{
+						DropFicha();
+					}; break;
+				}
+			}; break;
+			default:{
+				DropFicha();
+			}
+		}
+		draggedItem = null;
+	}
+});
+
+function SetPartePintable(partePosition, seteable)
+{
+	conteoRespuesta++;
+	var droppedElement = draggedItem;
+	$(this).addClass("pintable");
+	$(droppedElement).offset(partePosition);
+	$(droppedElement).fadeOut();
+	$(seteable).removeClass("seteable");
+	if(conteoRespuesta >= 6)
+		AvanzaPantalla();
+}
+
+function DropFicha()
+{
+	var droppedElement = draggedItem;
+	draggedItem = null;
+	$(droppedElement).animate({ top: topFicha, left: leftFicha }, 500);
+	topFicha = 0;
+	leftFicha = 0;
+}
+
+function TerminaContador()
+{
+	//AvanzaPantalla();
+}
+
+function AvanzaPantalla()
+{
+	$( "#contenedor").load( "seleccionaOpcionTres.html");
+}
+
+</script>
+
+<div id="explicacion">
+	Completa el rompecabezas
+</div>
+
+<div id="mapa">
+	<div class="parte seteable" id="parte1"></div>
+	<div class="parte seteable" id="parte2"></div>
+	<div class="parte seteable" id="parte3"></div>
+	<div class="parte seteable" id="parte4"></div>
+	<div class="parte seteable" id="parte5"></div>
+	<div class="parte seteable" id="parte6"></div>
+	<div class="parte seteable" id="parte7"></div>
+</div>
+<div class="ficha" id="ficha2"></div>
+<div class="ficha" id="ficha3"></div>
+<div class="ficha" id="ficha4"></div>
+<div class="ficha" id="ficha5"></div>
+<div class="ficha" id="ficha6"></div>
+<div class="ficha" id="ficha7"></div>

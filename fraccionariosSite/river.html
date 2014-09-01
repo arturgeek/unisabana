@@ -1,0 +1,249 @@
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/escena3/rio.png');
+}
+
+.marco
+{
+	background-image: url('images/escena3/marco.png');
+	height: 100%;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+}
+
+.titulo
+{
+	background-image: url('images/escena3/titulo.png');
+	height: 119px;
+	position: absolute;
+	left: 20px;
+	top: 28px;
+	width: 829px;
+}
+
+.guia
+{
+	background-image: url('images/escena3/guia.png');
+	height: 120px;
+	position: absolute;
+	right: 75px;
+	top: 25px;
+	width: 121px;
+}
+
+.bear
+{
+	background-image: url('images/escena3/personaje.png');
+	bottom: 20px;
+	height: 255px;
+	position: absolute;
+	right: 50px;
+	width: 166px;
+}
+
+.blackboard
+{
+	/*background: rgba(256,256,256,0);*/
+	background: #ffd091;
+	bottom: 95px;
+	display: none;
+	height: 400px;
+	left: 44px;
+	position: absolute;
+	width: 520px;
+}
+
+.blackboard .table
+{
+	/*background: rgba(256,256,256,0);*/
+	background: #ffd091;
+	height: 100%;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+}
+
+#btnContinuar
+{
+	background-image: url('images/escena3/bt_contimuar.png');
+	bottom: 35px;
+	cursor: pointer;
+	height: 44px;
+	left: 75px;
+	position: absolute;
+	width: 514px;
+}
+
+.pnlPrueba
+{
+	height: 100%;
+	text-align: center;
+	width: 100%;
+}
+
+.pnlPrueba .pnlOpciones,
+.pnlPrueba .pnlRespuestas
+{
+	display: inline-block;
+	height: 360px;
+	margin: 10px auto;
+	vertical-align: top;
+	width: 260px;
+}
+
+.pnlPrueba .pnlOpciones .opcion{
+	display: inline-block;
+	height: 105px;
+	margin: 5px 10px;
+	vertical-align: top;
+	width: 107px;
+}
+
+.pnlPrueba .pnlRespuestas .respuesta{
+	display: inline-block;
+	height: 105px;
+	margin: 5px 10px;
+	vertical-align: top;
+	width: 107px;
+}
+
+.pnlPrueba .pnlOpciones .opcion img,
+.pnlPrueba .pnlRespuestas .respuesta img{
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+
+.dropped{
+	background: red;
+}
+
+</style>
+
+<script type="text/javascript">
+
+var aciertos = 0;
+
+$(document).ready(function(){
+
+	$("#audio0").trigger("play");
+	$(".bear").css("background-image", "url('images/osa_habla.gif')");
+
+	$(".bear").on("click", function(){
+		Continuar();
+	});
+
+	$("#btnContinuar").on("click", function(){
+		Continuar();
+	});
+
+	$(".audio").on('ended', function() {
+		$(".bear").css("background-image", "url('images/osa_quieta.png')");
+	});
+});
+
+function Continuar()
+{
+	switch($("#btnContinuar").attr("class"))
+	{
+		case "etapa0":{
+			$("#btnContinuar").attr("class", "etapa1");
+			$(".blackboard").fadeIn();	
+			$(".blackboard").find(".table").html("<img src='images/escena3/explicacion1.gif' class='explicacion' />");
+			$("#audio0").trigger("pause");
+			$("#audio1").trigger("play");
+			$(".bear").css("background-image", "url('images/osa_habla.gif')");
+
+			setTimeout(function() { Continuar(); },33000);
+		};break;
+
+		case "etapa1":{
+				$("#btnContinuar").attr("class", "etapa2");
+				$(".blackboard").fadeIn();	
+				$("#audio1").trigger("pause");
+				$("#audio2").trigger("play");
+				$(".bear").css("background-image", "url('images/osa_habla.gif')");
+
+				setTimeout(function() { 
+					$(".blackboard").find(".table").html("<img src='images/escena3/explicacion2.gif' class='explicacion' />");
+				}, 700);
+		};break;
+
+		case "etapa2":{
+
+			$("#audio2").trigger("pause")
+			$("#audio3").trigger("play");
+			$(".bear").css("background-image", "url('images/osa_habla.gif')");
+			var test = Array();
+
+			test.push("<div class='pnlPrueba'>");
+
+			test.push("<div class='pnlOpciones'>");
+			test.push("<div class='opcion' id='opcion1'><img src='images/escena3/ima_1.png' /></div>");
+			test.push("<div class='opcion' id='opcion2'><img src='images/escena3/ima_2.png' /></div>");
+			test.push("<div class='opcion' id='opcion3'><img src='images/escena3/ima_3.png' /></div>");
+			test.push("<div class='opcion' id='opcion4'><img src='images/escena3/ima_4.png' /></div>");
+			test.push("<div class='opcion' id='opcion5'><img src='images/escena3/ima_5.png' /></div>");
+			test.push("<div class='opcion' id='opcion6'><img src='images/escena3/ima_6.png' /></div>");
+			test.push("</div>");
+
+			test.push("<div class='pnlRespuestas'>");
+			test.push("<div class='respuesta' id='respuesta1'><img src='images/escena3/ima_1_1.png' /></div>");
+			test.push("<div class='respuesta' id='respuesta2'><img src='images/escena3/ima_2_1.png' /></div>");
+			test.push("<div class='respuesta' id='respuesta3'><img src='images/escena3/ima_3_1.png' /></div>");
+			test.push("<div class='respuesta' id='respuesta4'><img src='images/escena3/ima_4_1.png' /></div>");
+			test.push("<div class='respuesta' id='respuesta5'><img src='images/escena3/ima_5_1.png' /></div>");
+			test.push("<div class='respuesta' id='respuesta6'><img src='images/escena3/ima_6_1.png' /></div>");
+			test.push("</div>");
+
+			test.push("</div>");
+
+			$(".blackboard").find(".table").html(test.join(''));
+
+			$(".pnlPrueba").find(".opcion").each(function(index, opcion){
+				$(this).droppable({
+				    accept: function (elm) {
+				        if($(this).attr("id").replace("opcion", "") == elm.attr("id").replace("respuesta", ""))
+				            return true;
+				        return false;
+				    },
+				    drop: function( event, ui ) {
+
+				    	$(ui.draggable).fadeOut();
+				    	$(this).html("Bien hecho");
+
+						aciertos++;
+						if(aciertos >= 6){
+							$("#contenedor").css("background-image", "url('images/escena2/fondo.png')"); 
+							menuWorld = 2;
+							$( "#contenedor" ).load("menuWorld.html");
+						}
+					}
+				});
+			});
+
+			$(".pnlPrueba").find(".respuesta").each(function(index, opcion){
+				$(this).draggable({
+				    revert: "invalid"
+				});
+			});
+		};break;
+	}
+}
+
+</script>
+<div class="marco"></div>
+<div class="titulo"></div>
+<div class="guia"></div>
+<div class="bear"></div>
+<div class="blackboard"><div class="table"></div></div>
+<div id="btnContinuar" class="etapa0"></div>
+<audio class='audio' id='audio0'><source src="images/escena3/ver_video.mp3" type="audio/mpeg"></audio>
+<audio class='audio' id='audio1'><source src="images/escena3/river_explicacion1.mp3" type="audio/mpeg"></audio>
+<audio class='audio' id='audio2'><source src="images/escena3/river_explicacion2.mp3" type="audio/mpeg"></audio>
+<audio class='audio' id='audio3'><source src="images/escena3/river_ejercicio.mp3" type="audio/mpeg"></audio>
