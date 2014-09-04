@@ -23,7 +23,8 @@
 
 		$(document).ready(function(){
 
-			CambiarEscena("1introduccion.html");
+			//CambiarEscena("1_introduccion.html");
+			CambiarEscena("10_juegoMasticar.html");
 
 			$("#contenedor .ingles").on("click", function(){
 				idioma = 2;
@@ -61,6 +62,7 @@
 		
 		function CambiarEscena(escena)
 		{
+			console.log(escena);
 			ultimaEscena = escena;
 			$( "#contenedor .tablero").load(ultimaEscena);
 		}
@@ -70,11 +72,11 @@
 <body>
 	<div id="contenedor">
 		<div class='tablero'></div>
-		<div class='opcion ingles'><span>Change</span></div>
-		<div class='opcion castellano'><span>Cambiar</span></div>
-		<div class='opcion vocabulario'><span>Glosario</span></div>
-		<div class='opcion mapaOrganos'><span>Organos</span></div>
-		<div class='opcion visualizacion'><span>Modelo</span></div>
+		<div class='opcion ingles'></div>
+		<div class='opcion castellano'></div>
+		<div class='opcion vocabulario'></div>
+		<div class='opcion mapaOrganos'></div>
+		<div class='opcion visualizacion'></div>
 		<div id="pnlTipoAprendizaje">
 			<div class='tipo tituloEncabezado'>Lector</div>
 			<div class='tipo tituloEncabezado'>Kinestésico</div>

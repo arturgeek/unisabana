@@ -1,0 +1,64 @@
+<style type="text/css">
+
+.contenidoCapitulo .texto
+{
+	bottom: 27px;
+	height: 40px;
+	line-height: 40px;
+	left: 140px;
+	overflow: hidden;
+	position: absolute;
+	width: 525px;
+}
+
+.contenidoCapitulo .texto .conversacion
+{
+	color: white;
+	font-family: Comic Sans, Comic Sans MS, cursive;
+	font-size: 16px;
+	line-height: 40px;
+	left: 0px;
+	position: absolute;
+	text-align: center;
+	top: 0px;
+	width: auto;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	var pelicula = "metasDesempenos";
+	setTimeout(function() { CambiarEscena("5_dialogoInicial.html"); }, 43000);
+
+	var swfHtml = '<object type="application/x-shockwave-flash" data="swf/' + pelicula + '.swf" LOOP="false" style="width:800px;height:600px;"><param name="movie" value="swf/' + pelicula + '.swf" /><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="wmode" value="opaque" /><param name="quality" value="high" /><param name="menu" value="false" /><param name="loop" value="false"></object>';
+
+	$(".contenidoCapitulo").html(swfHtml);
+
+});
+
+</script>
+
+<div class='contenidoCapitulo'>
+	<object type="application/x-shockwave-flash" data="swf/slide9e.swf" LOOP="false" style="width:800px;height:600px;">
+		<param name="movie" value="swf/slide9e.swf" />
+		<param name="allowfullscreen" value="true" />
+		<param name="allowscriptaccess" value="always" />
+		<param name="wmode" value="opaque" />
+		<param name="quality" value="high" />
+		<param name="menu" value="false" />
+		<param name="loop" value="false">
+	</object>
+</div>
+
+<script type="text/javascript">
+
+var alturaTotal = ($(".conversacion").height() + 40) * -1;
+
+$( ".conversacion" ).animate({
+    top: alturaTotal
+  }, 77000);
+
+</script>

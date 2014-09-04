@@ -31,17 +31,17 @@
 
 <script type="text/javascript">
 
-var preguntaActualLectura = 0;
+var preguntaActual = 0;
 var puntos = 0;
 
 $(document).ready(function(){
-	SiguientePreguntaLectura(preguntaActualLectura);
+	SiguientePreguntaLectura(preguntaActual);
 });
 
-function SiguientePreguntaLectura(preguntaActualLectura)
+function SiguientePreguntaLectura(preguntaActual)
 {
 	var pregunta = Array();
-	switch(preguntaActualLectura)
+	switch(preguntaActual)
 	{
 		case 0: 
 		{
@@ -95,18 +95,23 @@ function SiguientePreguntaLectura(preguntaActualLectura)
 
 		case 5:
 		{
-			CambiarEscena("8juegoMasticar.html");
+			SiguienteEscena();
 		}; break;
 	}
 
 	$(".contenidoCapitulo").html(pregunta.join(''));
 
 	$(".respuestas").find(".respuesta").on("click", function(){
-		preguntaActualLectura++;
+		preguntaActual++;
 		if($(this).hasClass("correcta"))
 			puntos++;
-		SiguientePreguntaLectura(preguntaActualLectura);
+		SiguientePreguntaLectura(preguntaActual);
 	});
+}
+
+function SiguienteEscena()
+{
+	CambiarEscena("10_juegoMasticar.html");
 }
 
 </script>
