@@ -79,9 +79,9 @@
 .panelJuego .bonos
 {
 	height: 160px;
-	left: 30px;
-	top: 126px;
-	width: 190px;
+	right: 30px;
+	top: 319px;
+	width: 165px;
 }
 
 .panelJuego .bonos div
@@ -98,7 +98,7 @@
 {
 	height: 110px;
 	left: 30px;
-	top: 280px;
+	top: 190px;
 	width: 190px;
 }
 
@@ -162,6 +162,30 @@
 }
 
 .panelJuego .marcadores div span
+{
+	display: block;
+}
+
+.panelJuego .tiempo
+{
+	height: 50px;
+	left: 30;
+	top: 127px;
+	width: 190;
+}
+
+.panelJuego .tiempo div
+{
+	background: #29929b;
+	color: white;
+	height: 60px;
+	line-height: 30px;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+
+.panelJuego .tiempo div span
 {
 	display: block;
 }
@@ -280,22 +304,267 @@
 	width: 36px;
 }
 
+.panelJuego .cabeza .bolo
+{
+	background: black;
+	background-clip: padding-box;
+	border-radius: 100%;
+	left: 270px;
+	position: absolute;
+	top: 165px;
+	height: 20px;
+	width: 20px;
+}
+
 </style>
 
 <script type="text/javascript">
 
-$(".button").on("click", function(){
-	CambiarEscena("8juegoMasticar.html");
+var niveles = Array();
+
+niveles.push( { nombre : "Nivel 1 - Facil", reduccionSalivaPorAcion : 2, numeroBolos : 3, recargaSaliva: 100, tiempo: 60 } );
+niveles.push( { nombre : "Nivel 2 - Facil", reduccionSalivaPorAcion : 2, numeroBolos : 4, recargaSaliva: 100, tiempo: 60 } );
+niveles.push( { nombre : "Nivel 3 - Facil", reduccionSalivaPorAcion : 2, numeroBolos : 5, recargaSaliva: 100, tiempo: 60 } );
+niveles.push( { nombre : "Nivel 4 - Normal", reduccionSalivaPorAcion : 4, numeroBolos : 6, recargaSaliva: 75, tiempo: 90 } );
+niveles.push( { nombre : "Nivel 5 - Normal", reduccionSalivaPorAcion : 4, numeroBolos : 7, recargaSaliva: 75, tiempo: 90 } );
+niveles.push( { nombre : "Nivel 6 - Normal", reduccionSalivaPorAcion : 4, numeroBolos : 8, recargaSaliva: 75, tiempo: 90 } );
+niveles.push( { nombre : "Nivel 7 - Normal", reduccionSalivaPorAcion : 4, numeroBolos : 9, recargaSaliva: 75, tiempo: 90 } );
+niveles.push( { nombre : "Nivel 8 - Dificil", reduccionSalivaPorAcion : 6, numeroBolos : 10, recargaSaliva: 50, tiempo: 90 } );
+niveles.push( { nombre : "Nivel 9 - Dificil", reduccionSalivaPorAcion : 6, numeroBolos : 11, recargaSaliva: 50, tiempo: 90 } );
+niveles.push( { nombre : "Nivel 10 - Dificil", reduccionSalivaPorAcion : 6, numeroBolos : 12, recargaSaliva: 50, tiempo: 90 } );
+niveles.push( { nombre : "Pro", reduccionSalivaPorAcion : 10, numeroBolos : 12, recargaSaliva: 25, tiempo: 60 } );
+
+</script>
+
+<script type="text/javascript">
+
+var nivelActual;
+var numeroNivel = 0;
+var nivelSaliva = 100;
+var jugos = 3;
+var reduccionSalivaPorAcion = 0;
+var masticadasNecesarias = 10;
+var masticadasActuales = 0;
+var etapaActual = 0;/* 0 = masticar, 1 = cerrarPaladar, 2 = cerrarTraquea, 3 = usaLengua, 4 = traga*/
+var bolosRestantes = 0;
+var bolosConsumidos = 0;
+var totalBolosConsumidos = 0;
+var seAtraganto = false;
+
+$(document).ready(function(){
+
+	agregarSaliva(nivelSaliva);
+	procesarNivel();
+
+	$(".button").on("click", function(){
+		CambiarEscena("8juegoMasticar.html");
+	});
+
+	$(".jugo").on("click", function(){
+		consumeJugo();
+	});
+
+	$(".panelJuego .masticar_btn").on("click", function(){
+		ProcesaMasticar("masticar");
+	});
+
+	$(".panelJuego .paladar_btn").on("click", function(){
+		ProcesaMasticar("paladar_btn");
+	});
+
+	$(".panelJuego .traquea_btn").on("click", function(){
+		ProcesaMasticar("traquea_btn");
+	});
+
+	$(".panelJuego .lengua_btn").on("click", function(){
+		ProcesaMasticar("lengua_btn");
+	});
+
 });
 
-$(".panelJuego .masticar_btn").on("click", function(){
-	$(".panelJuego .cabeza .mandibula").addClass("masticar");
-	setTimeout(function () {
-	    $(".panelJuego .cabeza .mandibula").removeClass('masticar');
-	}, 250);
-});
+function procesarNivel()
+{
+	nivelActual = niveles[numeroNivel];
 
+	$(".nivel").html(nivelActual.nombre);
+	$(".jugo .value").html(jugos);
 
+	seAtraganto = false;
+	bolosConsumidos = 0;
+	bolosRestantes = nivelActual.numeroBolos;
+	$(".bolosRestantes .value").html(bolosRestantes);
+	reduccionSalivaPorAcion = nivelActual.reduccionSalivaPorAcion;
+
+	ProcesaMasticar("proceso");
+}
+
+function reduceSaliva()
+{
+	nivelSaliva = (nivelSaliva - reduccionSalivaPorAcion) >= 0 ? (nivelSaliva - reduccionSalivaPorAcion) : 0;
+	$(".nivelSaliva .medidor").css("width", nivelSaliva + "%");
+}
+
+function agregarSaliva(valor)
+{
+	nivelSaliva = (nivelSaliva + valor) <= 100 ? (nivelSaliva + valor) : 100;
+	$(".nivelSaliva .medidor").css("width", nivelSaliva + "%");
+}
+
+/* 0 = ingresa,  = masticar, 2 = cerrarPaladar, 3 = cerrarTraquea, 4 = usaLengua, 5 = traga*/
+function ProcesaMasticar(ejecutor)
+{
+	switch(etapaActual)
+	{
+		case 0:{
+			ingresaBoca();
+			etapaActual++;
+		}break;
+		case 1:{
+			if(ejecutor == "proceso" || ejecutor == "masticar" || ejecutor == "jugo")
+			{
+				masticar();
+				if(masticadasActuales >= masticadasNecesarias)
+				{
+					etapaActual++;
+					antesDePaladar();
+				}
+			}
+			else
+				atraganta();
+		}break;
+		case 2:{
+			if(ejecutor == "proceso" || ejecutor == "paladar_btn")
+			{
+				antesDeTraquea();
+				etapaActual++;
+			}
+			else
+				atraganta();
+		}; break;
+		case 3:{
+			if(ejecutor == "proceso" || ejecutor == "traquea_btn")
+			{
+				antesDeLengua();
+				etapaActual++;
+			}
+			else
+				atraganta();
+		}; break;
+
+		case 4:{
+			if(ejecutor == "proceso" || ejecutor == "lengua_btn")
+			{
+				traga();
+				etapaActual = 0;
+			}
+			else
+				atraganta();
+		}; break;
+	}
+}
+
+function ingresaBoca()
+{
+	$(".bolo").animate({ left: "205px" }, 500);
+}
+
+function antesDePaladar()
+{
+	$(".bolo").animate({ left: "175px" }, 500);
+}
+
+function antesDeTraquea()
+{
+	$(".bolo").animate({ left: "154px", top: "150px" }, 500);
+}
+
+function antesDeLengua()
+{
+	$(".bolo").animate({ left: "125px", top: "174px" }, 500);
+}
+
+function traga()
+{
+	$(".bolo").animate({ top: "220px" }, 500, function(){
+		reiniciaComida(true);
+	});
+}
+
+function masticar()
+{
+	if(nivelSaliva > 0)
+	{
+		$(".panelJuego .cabeza .mandibula").addClass("masticar");
+		setTimeout(function () {
+		    $(".panelJuego .cabeza .mandibula").removeClass('masticar');	    
+		}, 250);
+		reduceSaliva();
+		masticadasActuales++;
+	}
+}
+
+function consumeBolo()
+{
+	totalBolosConsumidos++;
+	bolosConsumidos++;
+	bolosRestantes--;
+	if(bolosConsumidos < nivelActual.numeroBolos)
+	{
+		$(".bolosRestantes .value").html(bolosRestantes);
+		$(".bolosConsumidos .value").html(totalBolosConsumidos);
+		etapaActual = 0;
+		ProcesaMasticar("proceso");
+	}
+	else
+	{
+		numeroNivel++;
+		agregarSaliva(nivelActual.recargaSaliva);
+		procesarNivel();
+	}
+}
+
+function consumeJugo()
+{
+	masticadasActuales = masticadasNecesarias;
+	ProcesaMasticar("jugo");
+	agregarSaliva(100);
+}
+
+function reiniciaComida(procesoCorrecto)
+{
+	if(procesoCorrecto)
+	{
+		$(".bolo").fadeOut(100, function(){
+			$(".bolo").animate({ left: "270px", top: "165px" }, 500, function(){
+				$(".bolo").fadeIn(100);
+				consumeBolo();
+			});
+		});
+	}
+
+	masticadasActuales = 0;
+	etapaActual = 0;
+	ProcesaMasticar("proceso");
+}
+
+function atraganta()
+{
+	seAtraganto = true;
+	alert("atragantado");
+	agregarSaliva(100);
+	reiniciaComida(false);
+}
+
+function entregaPowerUps()
+{
+	if(!seAtraganto)
+		agregarJugos(3);
+}
+
+function agregarJugos(cantidad)
+{
+	jugos += cantidad;
+}
 
 </script>
 
@@ -306,15 +575,13 @@ $(".panelJuego .masticar_btn").on("click", function(){
 
 		<div class="seccion acciones">
 			<div class="masticar_btn">Masticar</div>
-			<div class="glandulas_btn">Usar glandulas</div>
 			<div class="paladar_btn">Cierra el paladar</div>
 			<div class="traquea_btn">Cierra la traquea</div>
 			<div class="lengua_btn">Usa la lengua</div>
 		</div>
 
 		<div class="seccion bonos">
-			<div class="jugox3">Jugo X3</div>
-			<div class="powerUp">Power Up</div>
+			<div class="jugo">Jugo (<span class='value'>0</span>)</div>
 		</div>
 
 		<div class="seccion indicadores">
@@ -326,16 +593,23 @@ $(".panelJuego .masticar_btn").on("click", function(){
 		</div>
 
 		<div class="seccion marcadores">
-			<div class="bocadosConsumidos">
-				Bocados consumidos
+			<div class="bolosConsumidos">
+				Bolos consumidos
 				<span class="value">0</span>
 			</div>
 			<div class="puntajeMasAlto">
 				Puntaje
 				<span class="value">0</span>
 			</div>
-			<div class="bocadosRestantes">
-				Bocados restantes
+			<div class="bolosRestantes">
+				Bolos restantes
+				<span class="value">0</span>
+			</div>
+		</div>
+
+		<div class="seccion tiempo">
+			<div>
+				Tiempo
 				<span class="value">0</span>
 			</div>
 		</div>
@@ -346,6 +620,7 @@ $(".panelJuego .masticar_btn").on("click", function(){
 			<div class="traquea"></div>
 			<div class="glandulas"></div>
 			<div class="paladar"></div>
+			<div class="bolo"></div>
 		</div>
 
 	</div>
