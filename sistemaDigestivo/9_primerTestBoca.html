@@ -10,6 +10,15 @@
 	width: 100%;
 }
 
+.contenidoCapitulo .tituloEncabezado
+{
+	margin: 10px auto;
+}
+
+.contenidoCapitulo .respuestas{
+	margin: 25px auto;
+}
+
 .contenidoCapitulo .respuestas .respuesta{
 	background: #1c8fcc;
 	background-clip: padding-box;
@@ -27,16 +36,354 @@
 	background: #054872;
 }
 
+.contenidoCapitulo .tableroKinesico{
+	background-image: url('images/escenaTestBoca/tablero.png');
+	height: 500px;
+	width: 750px;
+}
+
+.contenidoCapitulo .tableroKinesico .alimento{
+	position: absolute;
+	height: 87px;
+	top: 115px;
+	width: 87px;
+}
+
+.contenidoCapitulo .tableroKinesico .arroz{
+	background-image: url('images/escenaTestBoca/ficha1.png');
+	left: 650px;
+}
+
+.contenidoCapitulo .tableroKinesico .pollo{
+	background-image: url('images/escenaTestBoca/ficha2.png');
+	left: 530px;
+}
+
+.contenidoCapitulo .tableroKinesico .pizza{
+	background-image: url('images/escenaTestBoca/ficha3.png');
+	left: 410px;
+}
+
+.contenidoCapitulo .tableroKinesico .carne{
+	background-image: url('images/escenaTestBoca/ficha4.png');
+	left: 290px;
+}
+
+.contenidoCapitulo .tableroKinesico .pan{
+	background-image: url('images/escenaTestBoca/ficha5.png');
+	left: 170px;
+}
+
+.contenidoCapitulo .tableroKinesico .frijoles{
+	background-image: url('images/escenaTestBoca/ficha6.png');
+	left: 50px;
+}
+
+.contenidoCapitulo .tableroKinesico .dientes{
+	position: absolute;
+	height: 104px;
+	top: 435px;
+	width: 178px;
+}
+
+.contenidoCapitulo .tableroKinesico .incisivos{
+	background-image: url('images/escenaTestBoca/juego1_1.png');
+	left: 550px;
+}
+
+.contenidoCapitulo .tableroKinesico .caninos{
+	background-image: url('images/escenaTestBoca/juego1_2.png');
+	left: 305px;
+}
+
+.contenidoCapitulo .tableroKinesico .molares{
+	background-image: url('images/escenaTestBoca/juego1_3.png');
+	left: 65px;
+}
+
+.contenidoCapitulo .tableroKinesico .pregunta2{
+	background-image: url('images/escenaTestBoca/theet_model.png');
+	background-repeat: no-repeat;
+	bottom: 180px;
+	height: 205px;
+	left: 230px;
+	position: absolute;
+	width:  351px;
+}
+
+.contenidoCapitulo .tableroKinesico .pregunta2 .areaClick{
+	background: rgba(0, 0, 0, 0.0);
+	bottom: 40px;
+	height: 47px;
+	left: 105px;
+	position: absolute;
+	width: 130px;
+}
+
+.contenidoCapitulo .tableroKinesico .pregunta3{
+	height: 99%;
+	padding: 1%;
+	position: relative;
+	width: 99%;
+}
+
+.contenidoCapitulo .tableroKinesico .pregunta3 .imagen{
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background: url('images/escenaTestBoca/pregunta3.png') no-repeat center center;
+	background-repeat: no-repeat;
+	height: 248px;
+	margin: 15 auto;
+	width: 283px;
+}
+
+.contenidoCapitulo .tableroKinesico .pregunta3 .espacioRespuesta,
+.contenidoCapitulo .tableroKinesico .pregunta3 .respuestas div{
+	background: white;
+	background-clip: padding-box;
+	border-radius: 15px;
+	cursor: pointer;
+	height: 30px;
+	line-height: 30px;
+	margin: 5px auto;
+	width: 90%;
+}
+
+.contenidoCapitulo .tableroKinesico .pregunta4{
+	height: 99%;
+	padding: 1%;
+	position: relative;
+	width: 99%;
+}
+
+.contenidoCapitulo .tableroKinesico .pregunta4 .imagen{
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background: url('images/escenaTestBoca/ima_6.png') no-repeat center center;
+	background-repeat: no-repeat;
+	height: 248px;
+	margin: 15 auto;
+	width: 283px;
+}
+
+.contenidoCapitulo .tableroKinesico .pregunta4 .espacioRespuesta,
+.contenidoCapitulo .tableroKinesico .pregunta4 .respuestas div{
+	background: white;
+	background-clip: padding-box;
+	border-radius: 15px;
+	cursor: pointer;
+	height: 30px;
+	line-height: 30px;
+	margin: 5px auto;
+	width: 90%;
+}
+
+.contenidoCapitulo .tableroKinesico .pregunta5{
+	background-image: url('images/escenaTestBoca/ima_1.png');
+	background-repeat: no-repeat;
+	bottom: 107px;
+	height: 327;
+	left: 230px;
+	position: absolute;
+	width: 314;
+}
+
+.contenidoCapitulo .tableroKinesico .pregunta5 .areaClick{
+	background: rgba(0, 0, 0, 0.6);
+	bottom: 120px;
+	height: 40px;
+	left: 70px;
+	position: absolute;
+	width: 80px;
+}
+
 </style>
 
 <script type="text/javascript">
 
 var preguntaActual = 0;
 var puntos = 0;
+var aciertosDrag = 0;
 
 $(document).ready(function(){
-	SiguientePreguntaLectura(preguntaActual);
+
+	if(Kinestesico == 1)
+		SiguientePreguntaKinesico(preguntaActual);
+	else
+		SiguientePreguntaLectura(preguntaActual);
 });
+
+function SiguientePreguntaKinesico(preguntaActual)
+{
+	var pregunta = Array();
+	switch(preguntaActual)
+	{
+		case 0: 
+		{
+			pregunta.push("<h3 class='tituloEncabezado'>Organiza los elementos</h3>");
+			pregunta.push("<div class='tableroKinesico'>");
+			pregunta.push("<div class='alimento arroz' id='molares'></div>");
+			pregunta.push("<div class='alimento pollo' id='caninos' ></div>");
+			pregunta.push("<div class='alimento pizza' id='incisivos'></div>");
+			pregunta.push("<div class='alimento carne' id='caninos'></div>");
+			pregunta.push("<div class='alimento pan' id='incisivos'></div>");
+			pregunta.push("<div class='alimento frijoles' id='molares'></div>");
+			pregunta.push("<div class='dientes incisivos'></div>");
+			pregunta.push("<div class='dientes caninos'></div>");
+			pregunta.push("<div class='dientes molares'></div>");
+			pregunta.push("</div>");
+
+			$(".contenidoCapitulo").html(pregunta.join(''));
+
+			$(".tableroKinesico").find(".dientes").each(function(index, opcion){
+				$(this).droppable({
+				    accept: function (elm) {
+				        if($(this).hasClass(elm.attr("id")))
+				            return true;
+				        return false;
+				    },
+				    drop: function( event, ui ) {
+
+				    	$(ui.draggable).fadeOut();
+
+						aciertosDrag++;
+						if(aciertosDrag >= 6){
+							preguntaActual++;
+							SiguientePreguntaKinesico(preguntaActual);
+						}
+					}
+				});
+			});
+
+			$(".tableroKinesico").find(".alimento").each(function(index, opcion){
+				$(this).draggable({
+				    revert: "invalid"
+				});
+			});
+		}; break;
+
+		case 1:
+		{
+			pregunta.push("<h3 class='tituloEncabezado'>Which set of teeth can CUT the food?</h3>");
+			pregunta.push("<div class='tableroKinesico'>");
+			pregunta.push("<div class='pregunta2'><div class='areaClick'></div></div>");
+			pregunta.push("</div>");
+
+			$(".contenidoCapitulo").html(pregunta.join(''));
+
+			$(".contenidoCapitulo .pregunta2 .areaClick").on("click", function(){
+				preguntaActual++;
+				SiguientePreguntaKinesico(preguntaActual);
+			});
+
+		}; break;
+
+		case 2:
+		{
+			pregunta.push("<h3 class='tituloEncabezado'>Which is the name of this salivary gland?</h3>");
+			pregunta.push("<div class='tableroKinesico'>");
+			pregunta.push("<div class='pregunta3'>");
+			pregunta.push("<div class='imagen'></div>");
+			pregunta.push("<div class='espacioRespuesta'></div>");
+			pregunta.push("<div class='respuestas'>");
+			pregunta.push("<div class='correcta' >Parotid gland</div>");
+			pregunta.push("<div>Subligual gland</div>");
+			pregunta.push("<div>submnadibular gland</div>");
+			pregunta.push("<div>Salivary gland</div>");
+			pregunta.push("</div>");
+			pregunta.push("</div>");
+			pregunta.push("</div>");
+
+			$(".contenidoCapitulo").html(pregunta.join(''));
+
+			$(".contenidoCapitulo .espacioRespuesta").droppable({
+			    accept: function (elm) {
+			        if(elm.hasClass("correcta"))
+			            return true;
+			        return false;
+			    },
+			    drop: function( event, ui ) {
+					preguntaActual++;
+					SiguientePreguntaKinesico(preguntaActual);
+				}
+			});
+
+			$(".contenidoCapitulo .respuestas").find("div").each(function(index, opcion){
+				$(this).draggable({
+				    revert: "invalid"
+				});
+			});
+		}; break;
+
+		case 3:
+		{
+			pregunta.push("<h3 class='tituloEncabezado'>The canines and pre-molars can __________ food like chicken and meat?</h3>");
+			pregunta.push("<div class='tableroKinesico'>");
+			pregunta.push("<div class='pregunta4'>");
+			pregunta.push("<div class='imagen'></div>");
+			pregunta.push("<div class='espacioRespuesta'></div>");
+			pregunta.push("<div class='respuestas'>");
+			pregunta.push("<div>Chew</div>");
+			pregunta.push("<div>Grind</div>");
+			pregunta.push("<div class='correcta'>Rip</div>");
+			pregunta.push("<div>Cut</div>");
+			pregunta.push("</div>");
+			pregunta.push("</div>");
+			pregunta.push("</div>");
+
+			$(".contenidoCapitulo").html(pregunta.join(''));
+
+			$(".contenidoCapitulo .espacioRespuesta").droppable({
+			    accept: function (elm) {
+			        if(elm.hasClass("correcta"))
+			            return true;
+			        return false;
+			    },
+			    drop: function( event, ui ) {
+					preguntaActual++;
+					SiguientePreguntaKinesico(preguntaActual);
+				}
+			});
+
+			$(".contenidoCapitulo .respuestas").find("div").each(function(index, opcion){
+				$(this).draggable({
+				    revert: "invalid"
+				});
+			});
+		}; break;
+
+		case 4:
+		{
+			pregunta.push("<h3 class='tituloEncabezado'>Where is the sublingual gland?</h3>");
+			pregunta.push("<div class='tableroKinesico'>");
+			pregunta.push("<div class='pregunta5'><div class='areaClick'></div></div>");
+			pregunta.push("</div>");
+
+			$(".contenidoCapitulo").html(pregunta.join(''));
+
+			$(".contenidoCapitulo .pregunta5 .areaClick").on("click", function(){
+				preguntaActual++;
+				SiguientePreguntaKinesico(preguntaActual);
+			});
+		}; break;
+
+		case 5:
+		{
+			SiguienteEscena();
+		}; break;
+	}
+
+	$(".respuestas").find(".respuesta").on("click", function(){
+		preguntaActual++;
+		if($(this).hasClass("correcta"))
+			puntos++;
+		SiguientePreguntaLectura(preguntaActual);
+	});
+}
 
 function SiguientePreguntaLectura(preguntaActual)
 {

@@ -20,11 +20,12 @@
 		var LectoEscritor = 0;
 		var Kinestesico = 0;
 		var ultimaEscena = "";
+		var bolosTotalesConsumidos = 0;
 
 		$(document).ready(function(){
 
-			//CambiarEscena("1_introduccion.html");
-			CambiarEscena("10_juegoMasticar.html");
+			CambiarEscena("1_introduccion.html");
+			//CambiarEscena("10_juegoMasticar.html");
 
 			$("#contenedor .ingles").on("click", function(){
 				idioma = 2;
@@ -62,7 +63,6 @@
 		
 		function CambiarEscena(escena)
 		{
-			console.log(escena);
 			ultimaEscena = escena;
 			$( "#contenedor .tablero").load(ultimaEscena);
 		}

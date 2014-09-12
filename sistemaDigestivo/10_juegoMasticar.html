@@ -118,20 +118,32 @@
 	background: #d25adf;
 }
 
-.panelJuego .indicadores div:last-child
+.panelJuego .indicadores .nivelSaliva,
+.panelJuego .indicadores .vidasDisponibles
 {
 	background: red;
 }
 
-.panelJuego .indicadores div:last-child .medidor
+.panelJuego .indicadores .nivelSaliva .medidor,
+.panelJuego .indicadores .vidasDisponibles .medidor
 {
-	background: #177ac5;
 	display: block;
 	height: 100%;
 	width: 50%;
 }
 
-.panelJuego .indicadores div:last-child .texto
+.panelJuego .indicadores .nivelSaliva .medidor
+{
+	background: #177ac5;
+}
+
+.panelJuego .indicadores .vidasDisponibles .medidor
+{
+	background: #009933;
+}
+
+.panelJuego .indicadores .nivelSaliva .texto,
+.panelJuego .indicadores .vidasDisponibles .texto
 {
 	display: block;
 	height: 100%;
@@ -188,6 +200,27 @@
 .panelJuego .tiempo div span
 {
 	display: block;
+}
+
+.panelJuego .tiempo div span
+{
+	display: block;
+}
+
+.panelJuego .instrucciones
+{
+	background: #29929b;
+	background-clip: padding-box;
+	border: 2px solid white;
+	border-radius: 15px;
+	bottom: 15px;
+	color: white;
+	height: 77px;
+	line-height: 35px;
+	margin: 10px auto;
+	right: 23px;
+	text-align: center;
+	width: 700px;
 }
 
 .panelJuego .cabeza
@@ -322,6 +355,7 @@
 
 var niveles = Array();
 
+niveles.push( { nombre : "Turorial", reduccionSalivaPorAcion : 2, numeroBolos : 1, recargaSaliva: 100, tiempo: 60 } );
 niveles.push( { nombre : "Nivel 1 - Facil", reduccionSalivaPorAcion : 2, numeroBolos : 3, recargaSaliva: 100, tiempo: 60 } );
 niveles.push( { nombre : "Nivel 2 - Facil", reduccionSalivaPorAcion : 2, numeroBolos : 4, recargaSaliva: 100, tiempo: 60 } );
 niveles.push( { nombre : "Nivel 3 - Facil", reduccionSalivaPorAcion : 2, numeroBolos : 5, recargaSaliva: 100, tiempo: 60 } );
@@ -350,10 +384,13 @@ var bolosRestantes = 0;
 var bolosConsumidos = 0;
 var totalBolosConsumidos = 0;
 var seAtraganto = false;
+var vidasDisponibles = 100;
+var disminucionVidaPorAtragantamiento = 25;
 
 $(document).ready(function(){
 
 	agregarSaliva(nivelSaliva);
+	agregaVida(vidasDisponibles);
 	procesarNivel();
 
 	$(".button").on("click", function(){
@@ -384,6 +421,7 @@ $(document).ready(function(){
 
 function procesarNivel()
 {
+	etapaActual = 0;
 	nivelActual = niveles[numeroNivel];
 
 	$(".nivel").html(nivelActual.nombre);
@@ -396,6 +434,32 @@ function procesarNivel()
 	reduccionSalivaPorAcion = nivelActual.reduccionSalivaPorAcion;
 
 	ProcesaMasticar("proceso");
+}
+
+function instrucciones()
+{
+	switch(etapaActual)
+	{
+		case 0:{
+			$(".instrucciones").html("Usa el botón de masticar para que las glándulas salivales inyecten saliva para facilitar que la comida sea triturada más fácilmente y elaborar el bolo alimenticio.");
+		}break;
+		case 1:{
+			if(masticadasActuales < 5)
+				$(".instrucciones").html("Usa el botón de masticar para que las glándulas salivales inyecten saliva para facilitar que la comida sea triturada más fácilmente y elaborar el bolo alimenticio.");
+			else
+				$(".instrucciones").html("Ten mucho cuidado porque a veces, sin darte cuenta, te quedarás sin saliva, por lo que tendrás que recurrir al jugo disponible para recargar el indicador de saliva. ");
+		}break;
+		case 2:{
+			$(".instrucciones").html("Cierra el paladar para comenzar a pasar la comida. ¡CUIDADO! ¡Si no cierras el paladar, puedes atragantarte y perder una vida! .");
+		}; break;
+		case 3:{
+			$(".instrucciones").html("Usa el botón de cerrar traquea para ordenar a la tráquea que se cierre, y así el alimento puede pasar sin llegar a los pulmones.");
+		}; break;
+
+		case 4:{
+			$(".instrucciones").html("Con la tráquea cerrada y el paladar cerrado, puedes usar la lengua para empujar el bolo alimenticio al esófago.");
+		}; break;
+	}
 }
 
 function reduceSaliva()
@@ -461,6 +525,11 @@ function ProcesaMasticar(ejecutor)
 				atraganta();
 		}; break;
 	}
+
+	if(numeroNivel == 0)
+		instrucciones();
+	else
+		$(".instrucciones").html("");
 }
 
 function ingresaBoca()
@@ -499,6 +568,7 @@ function masticar()
 		    $(".panelJuego .cabeza .mandibula").removeClass('masticar');	    
 		}, 250);
 		reduceSaliva();
+		cambiaColorBolo();
 		masticadasActuales++;
 	}
 }
@@ -508,10 +578,12 @@ function consumeBolo()
 	totalBolosConsumidos++;
 	bolosConsumidos++;
 	bolosRestantes--;
+
+	$(".bolosRestantes .value").html(bolosRestantes);
+	$(".bolosConsumidos .value").html(totalBolosConsumidos);
+
 	if(bolosConsumidos < nivelActual.numeroBolos)
 	{
-		$(".bolosRestantes .value").html(bolosRestantes);
-		$(".bolosConsumidos .value").html(totalBolosConsumidos);
 		etapaActual = 0;
 		ProcesaMasticar("proceso");
 	}
@@ -520,6 +592,24 @@ function consumeBolo()
 		numeroNivel++;
 		agregarSaliva(nivelActual.recargaSaliva);
 		procesarNivel();
+	}
+}
+
+function cambiaColorBolo()
+{
+	switch(masticadasActuales)
+	{
+		case 0: $(".bolo").css("background-color", "black"); break;
+		case 1: $(".bolo").css("background-color", "black"); break;
+		case 2: $(".bolo").css("background-color", "#001800"); break;
+		case 3: $(".bolo").css("background-color", "#002500"); break;
+		case 4: $(".bolo").css("background-color", "#002800"); break;
+		case 5: $(".bolo").css("background-color", "#003100"); break;
+		case 6: $(".bolo").css("background-color", "#004b00"); break;
+		case 7: $(".bolo").css("background-color", "#006400"); break;
+		case 8: $(".bolo").css("background-color", "#007e00"); break;
+		case 9: $(".bolo").css("background-color", "#009700"); break;
+		case 10: $(".bolo").css("background-color", "#00b100"); break;
 	}
 }
 
@@ -543,12 +633,16 @@ function reiniciaComida(procesoCorrecto)
 	}
 
 	masticadasActuales = 0;
+	cambiaColorBolo();
 	etapaActual = 0;
 	ProcesaMasticar("proceso");
 }
 
 function atraganta()
 {
+
+	$(".instrucciones").html("Recuerda el proceso si no quieres atragantarte de nuevo.");
+	quitaVida();
 	seAtraganto = true;
 	alert("atragantado");
 	agregarSaliva(100);
@@ -564,6 +658,27 @@ function entregaPowerUps()
 function agregarJugos(cantidad)
 {
 	jugos += cantidad;
+}
+
+function agregaVida(vida)
+{
+	vidasDisponibles = (vidasDisponibles + vida) <= 100 ? (vidasDisponibles + vida) : 100;
+	$(".vidasDisponibles .medidor").css("width", vidasDisponibles + "%");
+}
+
+function quitaVida()
+{
+	vidasDisponibles -= disminucionVidaPorAtragantamiento;
+	if(vidasDisponibles > 0)
+		$(".vidasDisponibles .medidor").css("width", vidasDisponibles + "%");
+	else
+		AvanzaMundo();
+}
+
+function AvanzaMundo()
+{
+	bolosTotalesConsumidos = totalBolosConsumidos;
+	CambiarEscena("11_resultadosJuego.html");
 }
 
 </script>
@@ -590,6 +705,10 @@ function agregarJugos(cantidad)
 				<span class='medidor'></span>
 				<span class='texto'>Nivel de saliva</span>
 			</div>
+			<div class="vidasDisponibles">
+				<span class='medidor'></span>
+				<span class='texto'>Vida disponible</span>
+			</div>
 		</div>
 
 		<div class="seccion marcadores">
@@ -612,6 +731,10 @@ function agregarJugos(cantidad)
 				Tiempo
 				<span class="value">0</span>
 			</div>
+		</div>
+
+		<div class="seccion instrucciones">
+
 		</div>
 
 		<div class="cabeza">
