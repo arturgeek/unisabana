@@ -1,0 +1,73 @@
+<html>
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Exo' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Chau+Philomene+One:400,400italic' rel='stylesheet' type='text/css'>
+	<title>El ABC de mi mascota</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" href="css/jquery-ui-1.10.4.min.css" />
+	<script type="text/javascript" src="script/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="script/jquery-ui-1.10.4.min.js"></script>
+	<script type="text/javascript">
+
+		var menuWorld = 0;
+		var nombre = "";
+		var edad = 0;
+		var mascota = "";
+		var puntos = 0;
+		var nivel = 0;
+
+		$(document).ready(function(){
+			$("#fondo").trigger("play");
+			$("#fondo").prop("volume", 0.5);
+
+			$( "#contenedor").load( "3_seleccionmascota.html");
+		});
+
+		function GetUser(nombreLlave, clave)
+		{
+			var user = JSON.parse(localStorage.getItem(nombreLlave));
+			if (user !== null && user.clave == clave) {
+				return user;
+			}
+			return null;
+		}
+
+		function ChangeWorld()
+		{
+			var user = JSON.parse(localStorage.getItem(claveActual));
+			user.mundo = menuWorld;
+			localStorage.setItem(claveActual, JSON.stringify(user));
+		}
+
+		function AddPoints()
+		{
+			var user = JSON.parse(localStorage.getItem(claveActual));
+			user.puntos = user.puntos + 1;
+			localStorage.setItem(claveActual, JSON.stringify(user));
+		}
+
+		function ReturnCurrentWorld()
+		{
+			var user = JSON.parse(localStorage.getItem(claveActual));
+			return user.mundo;
+		}
+
+		function ReturnPoints()
+		{
+			var user = JSON.parse(localStorage.getItem(claveActual));
+			return user.puntos;
+		}
+
+		function SetCurrentWorld(world)
+		{
+			var user = JSON.parse(localStorage.getItem(claveActual));
+			user.mundo = world;
+			localStorage.setItem(claveActual, JSON.stringify(user));
+		}
+
+	</script>
+</head>
+<body>
+	<div id="contenedor"></div>
+</body>
+</html>

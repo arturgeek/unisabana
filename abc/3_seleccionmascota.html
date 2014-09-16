@@ -1,0 +1,109 @@
+<script type="text/javascript">
+	
+	$(".btnContinuar").on("click", function(){
+		
+	});
+
+	$(document).ready(function(){
+
+	});
+
+</script>
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/fondo.png');
+}
+
+.titulo
+{
+	background-image: url('images/escena0/titulo.png');
+	height: 168px;
+	margin: 20px auto;
+	width: 698px;
+}
+
+#pnlSeleccionaMascota
+{
+	background: #752a12;
+	background-clip: padding-box;
+	border-radius: 15px;
+	height: 400px;
+	margin: 10px auto 10px;
+	padding: 10px 15px 5px;
+	position: relative;
+	text-align: center;
+	width: 600px;
+}
+
+#pnlSeleccionaMascota .titulo
+{
+	color: #fdd963;
+	font-family: 'Chau Philomene One', sans-serif;
+	font-size: 30px;
+	height: 50px;
+	margin: 0px;
+}
+
+#pnlSeleccionaMascota .texto
+{
+	color: white;
+	font-size: 20px;
+	height: 30px;
+	margin: 0px;
+	width: 100%;
+}
+
+#pnlSeleccionaMascota .texto:last-child
+{
+	margin: 0px;
+}
+
+#pnlSeleccionaMascota .gato,
+#pnlSeleccionaMascota .perro
+{
+	background-clip: padding-box;
+	border-radius: 15px;
+	display: inline-block;
+	font-size: 20px;
+	height: 165px;
+	margin: 10px 15px;
+	width: 165px;
+}
+
+#pnlSeleccionaMascota .perro
+{
+	background-image: url('images/perro.png');
+}
+
+#pnlSeleccionaMascota .gato
+{
+	background-image: url('images/gato.png');
+}
+
+#pnlSeleccionaMascota .txtNombreMascota
+{
+	font-size: 20px;
+}
+
+#pnlSeleccionaMascota .btnContinuar
+{
+	bottom: 10px;
+	margin: 25px auto 0px;
+	width: 150px;
+}
+
+</style>
+
+<div class='cabecera'><div class='titulo'>Selecciona tu mascota</div></div>
+<fieldset id='pnlSeleccionaMascota'>
+	<div class='titulo'>Registra tus datos</div>
+	<div class='texto'>Hola _____ por favor, selecciona tu mascota</div>
+	<div class='perro'></div>
+	<div class='gato'></div>
+	<br/>
+	<div class='texto'>Dale un nombre a tu mascota.</div>
+	<input type='text' class='txtNombreMascota' />
+	<div class="boton btnContinuar">Continuar</div>
+</fieldset>

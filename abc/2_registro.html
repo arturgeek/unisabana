@@ -1,0 +1,89 @@
+<script type="text/javascript">
+	
+	$(".btnContinuar").on("click", function(){
+		
+	});
+
+	$(document).ready(function(){
+
+	});
+
+</script>
+<style type="text/css">
+
+#contenedor
+{
+	background-image: url('images/fondo.png');
+}
+
+.titulo
+{
+	background-image: url('images/escena0/titulo.png');
+	height: 168px;
+	margin: 20px auto;
+	width: 698px;
+}
+
+.matematin
+{
+	background-image: url('images/escena0/personaje.gif');
+	height: 397px;
+	margin: -100px auto;
+	width: 397px;
+}
+
+#pnlFormulario
+{
+	background: #752a12;
+	background-clip: padding-box;
+	border-radius: 15px;
+	bottom: 10px;
+	padding: 10px 15px 5px;
+	position: absolute;
+	right: 10px;
+	width: 300px;
+}
+
+#pnlFormulario .campo
+{
+	width: 100%;
+}
+
+#pnlFormulario  span,
+#pnlFormulario  input
+{
+	font-size: 20px;
+	display: inline-block;
+}
+
+#pnlFormulario  span
+{
+	color: white;
+	width: 90px;
+}
+
+#pnlFormulario .txtNombre,
+#pnlFormulario .txtEdad
+{
+	width: 205px;
+}
+
+#pnlFormulario .btnContinuar
+{
+	margin: 10px 10px 0;
+}
+
+</style>
+
+<div class='cabecera'><div class='titulo'>Registra tus datos</div></div>
+<fieldset id='pnlFormulario'>
+	<div class='campo'>
+		<span>Nombre</span>
+		<input type='text' class='txtNombre' />
+	</div>
+	<div class='campo'>
+		<span>Edad</span>
+		<input type='text' class='txtEdad' />
+	</div>
+	<div class="boton btnContinuar">Continuar</div>
+</fieldset>
