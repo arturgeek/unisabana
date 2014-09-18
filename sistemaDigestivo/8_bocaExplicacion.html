@@ -203,16 +203,16 @@ function MostrarOrganoVideo(){
 	switch(Organo)
 	{
 		case "lengua":{
-			CargarVideo("//www.youtube.com/embed/SBRPrn-AmQ8");
+			CargarVideo("video/lengua_video.mp4");
 		}; break;
 		case "dientes":{
-			CargarVideo("//www.youtube.com/embed/T6vV9U3Argw");
+			CargarVideo("video/dientes.mp4");
 		}; break;
 		case "glandulas":{
-			CargarVideo("//www.youtube.com/embed/TWR2_G6boP8");
+			CargarVideo("video/glandulas.mp4");
 		}; break;
 		case "paladar":{
-			CargarVideo("//www.youtube.com/embed/UA9mvbqD-WU");
+			CargarVideo("video/paladar.mp4");
 		}; break;
 	}
 }
@@ -221,22 +221,22 @@ function MostrarOrganoVideoTexto(){
 	switch(Organo)
 	{
 		case "lengua":{
-			CargarVideoTexto('//www.youtube.com/embed/2cqGX2Bc1F4', $("#textoLengua").html());
+			CargarVideoTexto('video/lengua_video_texto.mp4', $("#textoLengua").html());
 		}; break;
 		case "dientes":{
-			CargarVideoTexto('//www.youtube.com/embed/pd00uzOHLoU', $("#textoDientes").html());
+			CargarVideoTexto('video/dientes.mp4', $("#textoDientes").html());
 		}; break;
 		case "glandulas":{
-			CargarVideoTexto('//www.youtube.com/embed/TWR2_G6boP8', $("#textoGlandulas").html());
+			CargarVideoTexto('video/glandulas.mp4', $("#textoGlandulas").html());
 		}; break;
 		case "paladar":{
-			CargarVideoTexto('//www.youtube.com/embed/UA9mvbqD-WU', $("#textoPaladar").html());
+			CargarVideoTexto('video/paladar.mp4', $("#textoPaladar").html());
 		}; break;
 	}
 }
 
 function CargarVideo(ruta){
-	$(".soloVideo").html('<iframe width="90%" height="90%" src="' + ruta + '" frameborder="0" allowfullscreen></iframe>');
+	$(".soloVideo").html('<video width="90%" height="90%" controls autoplay><source src="' + ruta + '" type="video/mp4"></video>');
 	$(".soloVideo").append('<div class="volver">Volver</div>');
 	$(".soloVideo").parent().show();
 	$(".soloVideo").show();
@@ -245,9 +245,7 @@ function CargarVideo(ruta){
 }
 
 function CargarVideoTexto(ruta, div){
-	console.log(ruta);
-	console.log(div);
-	$(".VideoTexto").find(".video").html('<iframe width="100%" height="100%" src="' + ruta + '" frameborder="0" allowfullscreen></iframe>');
+	$(".VideoTexto").find(".video").html('<video width="100%" height="100%" controls autoplay><source src="' + ruta + '" type="video/mp4"></video>');
 	$(".VideoTexto").find(".texto").html(div);
 	$(".VideoTexto").append('<div class="volver">Volver</div>');
 	$(".VideoTexto").parent().show();
@@ -261,6 +259,8 @@ function CargarVideoTexto(ruta, div){
 
 function MostrarSeleccion(panel){
 	$(".panelInformacion .seleccion").show();
+	$(".soloVideo").html("");
+	$(".VideoTexto").find(".video").html("");
 	$(panel).hide();
 	$(panel).parent().hide();
 }

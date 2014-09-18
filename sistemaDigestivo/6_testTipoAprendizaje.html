@@ -246,7 +246,7 @@ function CargarPregunta()
 	pregunta = preguntas[NumeroPregunta];
 	$(".pregunta").html("<h3 class='tituloEncabezado'>" + pregunta.pregunta + "</h3>");
 	$.each(pregunta.respuestas, function(index, respuesta){
-		$(".respuestas").append("<div class='respuesta' div='" + respuesta.tipo + "'>" + respuesta.respuesta + "</div>");
+		$(".respuestas").append("<div class='respuesta' id='" + respuesta.tipo + "'>" + respuesta.respuesta + "</div>");
 	});
 	NumeroPregunta++;
 
@@ -271,6 +271,12 @@ function CargarPregunta()
 			CargarPregunta();
 		}
 		else{
+			if( LectoEscritor > Auditivo && LectoEscritor > Visual && LectoEscritor > Kinestesico )
+				tipoAprendizaje = 1;
+			else
+				tipoAprendizaje = 0;
+
+
 			CambiarEscena("7_seleccionOrgano.html");
 		}
 	});

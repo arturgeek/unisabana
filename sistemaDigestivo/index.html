@@ -15,17 +15,21 @@
 		Ingles: 2
 		*/
 		var idioma = 1;
-		var Visual = 0;
+		
 		var Auditivo = 0;
 		var LectoEscritor = 0;
+		var Visual = 0;
 		var Kinestesico = 0;
+
+		var tipoAprendizaje = 0;//0 - kinesico, 1 - lector
 		var ultimaEscena = "";
 		var bolosTotalesConsumidos = 0;
+		var puntosTest = 0;
 
 		$(document).ready(function(){
 
 			CambiarEscena("1_introduccion.html");
-			//CambiarEscena("10_juegoMasticar.html");
+			//CambiarEscena("6_testTipoAprendizaje.html");
 
 			$("#contenedor .ingles").on("click", function(){
 				idioma = 2;

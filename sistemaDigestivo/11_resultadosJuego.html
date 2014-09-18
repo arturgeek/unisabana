@@ -23,18 +23,33 @@
 	width: 70%;
 }
 
+.tituloEncabezado
+{
+	margin-bottom: 10px;
+	margin-top: 20px;
+}
+
 </style>
 <script type="text/javascript">
 
-$(".resultado").html("Has logrado consumir " + bolosTotalesConsumidos + " bolos.");
+$(".resultadoTipoAprendizaje").html("");
+$(".resultadoTipoAprendizaje").append("<br/>Auditivo " + Auditivo);
+$(".resultadoTipoAprendizaje").append("<br/>Lecto Escritor " + LectoEscritor);
+$(".resultadoTipoAprendizaje").append("<br/>Visual " + Visual);
+$(".resultadoTipoAprendizaje").append("<br/>Kinestesico " + Kinestesico);
+
+$(".resultadoTest").html("Has obtenido " + puntosTest + " puntos en el test.");
+
+$(".resultadoJuego").html("Has logrado consumir " + bolosTotalesConsumidos + " bolos.");
 
 </script>
 <div class="contenidoCapitulo">
 
-	<h3 class='tituloEncabezado'>Bien hecho</h3>
-	<br/>
-	<br/>
-	<br/>
-	<div class='resultado'></div>
+	<h3 class='tituloEncabezado'>Resultados tipos de aprendizaje</h3>
+	<div class='resultado resultadoTipoAprendizaje'></div>
+	<h3 class='tituloEncabezado'>Puntos obtenidos en el test</h3>
+	<div class='resultado resultadoTest'></div>
+	<h3 class='tituloEncabezado'>Bolos consumidos en el juego</h3>
+	<div class='resultado resultadoJuego'></div>
 
 </div>

@@ -193,7 +193,7 @@
 }
 
 .contenidoCapitulo .tableroKinesico .pregunta5 .areaClick{
-	background: rgba(0, 0, 0, 0.6);
+	background: rgba(0, 0, 0, 0.0);
 	bottom: 120px;
 	height: 40px;
 	left: 70px;
@@ -211,7 +211,7 @@ var aciertosDrag = 0;
 
 $(document).ready(function(){
 
-	if(Kinestesico == 1)
+	if(tipoAprendizaje == 0)
 		SiguientePreguntaKinesico(preguntaActual);
 	else
 		SiguientePreguntaLectura(preguntaActual);
@@ -253,6 +253,7 @@ function SiguientePreguntaKinesico(preguntaActual)
 						aciertosDrag++;
 						if(aciertosDrag >= 6){
 							preguntaActual++;
+							puntos++;
 							SiguientePreguntaKinesico(preguntaActual);
 						}
 					}
@@ -276,6 +277,7 @@ function SiguientePreguntaKinesico(preguntaActual)
 			$(".contenidoCapitulo").html(pregunta.join(''));
 
 			$(".contenidoCapitulo .pregunta2 .areaClick").on("click", function(){
+				puntos++;
 				preguntaActual++;
 				SiguientePreguntaKinesico(preguntaActual);
 			});
@@ -308,6 +310,7 @@ function SiguientePreguntaKinesico(preguntaActual)
 			    },
 			    drop: function( event, ui ) {
 					preguntaActual++;
+					puntos++;
 					SiguientePreguntaKinesico(preguntaActual);
 				}
 			});
@@ -345,6 +348,7 @@ function SiguientePreguntaKinesico(preguntaActual)
 			    },
 			    drop: function( event, ui ) {
 					preguntaActual++;
+					puntos++;
 					SiguientePreguntaKinesico(preguntaActual);
 				}
 			});
@@ -367,6 +371,7 @@ function SiguientePreguntaKinesico(preguntaActual)
 
 			$(".contenidoCapitulo .pregunta5 .areaClick").on("click", function(){
 				preguntaActual++;
+				puntos++;
 				SiguientePreguntaKinesico(preguntaActual);
 			});
 		}; break;
@@ -376,13 +381,6 @@ function SiguientePreguntaKinesico(preguntaActual)
 			SiguienteEscena();
 		}; break;
 	}
-
-	$(".respuestas").find(".respuesta").on("click", function(){
-		preguntaActual++;
-		if($(this).hasClass("correcta"))
-			puntos++;
-		SiguientePreguntaLectura(preguntaActual);
-	});
 }
 
 function SiguientePreguntaLectura(preguntaActual)
@@ -458,6 +456,7 @@ function SiguientePreguntaLectura(preguntaActual)
 
 function SiguienteEscena()
 {
+	puntosTest = puntos;
 	CambiarEscena("10_juegoMasticar.html");
 }
 
